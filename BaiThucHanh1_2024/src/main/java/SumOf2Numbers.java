@@ -5,10 +5,10 @@
 
 /**
  *
- * @author bluez
- * //thang ccmkmkfkf
+ * @author Nhat & Thang & Hai & Vy & Hy
+ * //
  */
-// Hai Minh da~ zo
+//
 public class SumOf2Numbers {
     private int a,b;
 
