@@ -33,6 +33,14 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Component id="jButtonCong" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jButtonTru" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jButtonNhapLai" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel1" min="-2" pref="81" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -43,12 +51,6 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jTextFieldSoThu2" min="-2" pref="118" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                              <Component id="jButtonCong" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButtonNhapLai" min="-2" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -58,7 +60,7 @@
                       <Component id="jLabelKQMAIN" min="-2" pref="103" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,6 +83,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonCong" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonNhapLai" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonTru" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -134,6 +137,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelKQMAIN">
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonTru">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tru"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTruActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

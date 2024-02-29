@@ -39,6 +39,7 @@ public class Form_Sum2Numbers extends javax.swing.JFrame {
         jButtonNhapLai = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabelKQMAIN = new javax.swing.JLabel();
+        jButtonTru = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,6 +65,13 @@ public class Form_Sum2Numbers extends javax.swing.JFrame {
 
         jLabel3.setText("Kết quả:");
 
+        jButtonTru.setText("Tru");
+        jButtonTru.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTruActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,24 +86,26 @@ public class Form_Sum2Numbers extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jButtonCong)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonTru)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonNhapLai))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldSoThu1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldSoThu2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addComponent(jButtonCong)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonNhapLai))))
+                                .addComponent(jTextFieldSoThu2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelKQMAIN, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +123,8 @@ public class Form_Sum2Numbers extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCong)
-                    .addComponent(jButtonNhapLai))
+                    .addComponent(jButtonNhapLai)
+                    .addComponent(jButtonTru))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -143,6 +154,16 @@ public class Form_Sum2Numbers extends javax.swing.JFrame {
         this.jTextFieldSoThu1.setText("");
         this.jTextFieldSoThu2.setText("");
     }//GEN-LAST:event_jButtonNhapLaiActionPerformed
+
+    private void jButtonTruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTruActionPerformed
+        // TODO add your handling code here:
+        try {
+            minusOf2Numbers minus = new minusOf2Numbers(Integer.parseInt(this.jTextFieldSoThu1.getText()), Integer.parseInt(this.jTextFieldSoThu2.getText()));
+            this.jLabelKQMAIN.setText(minus.minus()+"");;
+        } catch (NumberFormatException e) {
+            this.jLabelKQMAIN.setText("nhap du lieu sai s");
+        }
+    }//GEN-LAST:event_jButtonTruActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,6 +203,7 @@ public class Form_Sum2Numbers extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCong;
     private javax.swing.JButton jButtonNhapLai;
+    private javax.swing.JButton jButtonTru;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
