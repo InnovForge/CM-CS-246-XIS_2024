@@ -6,6 +6,7 @@
 /**
  *
  * @author bluez
+ * //thang ccmkmkfkf
  */
 public class SumOf2Numbers {
     private int a,b;
