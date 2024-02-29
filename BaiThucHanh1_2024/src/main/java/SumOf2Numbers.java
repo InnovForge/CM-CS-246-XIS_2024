@@ -8,6 +8,7 @@
  * @author bluez
  * //thang ccmkmkfkf
  */
+// Hai Minh da~ zo
 public class SumOf2Numbers {
     private int a,b;
 
