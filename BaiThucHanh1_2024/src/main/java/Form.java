@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author bluez
+ * @author bluez Thang Hai Nhat Hy Vy
  */
 public class Form extends javax.swing.JFrame {
 
@@ -21,7 +21,9 @@ public class Form extends javax.swing.JFrame {
     public Form() {
         initComponents();
         this.jLabelPHEPCONG.setFont(new Font("Arial",Font.PLAIN,20));
-        this.setTitle("Calculator");
+        this.setTitle("Calculator Group 3");
+        
+        this.setLocationRelativeTo(null);
         
         jTextFieldSoThu1.setBorder(BorderFactory.createLineBorder(Color.GREEN, 5));
         
