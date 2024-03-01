@@ -16,8 +16,8 @@ nb-configuration.xml
 *.ear
 
 # Maven #
-
 .classpath
 .project
 .settings/
 /target/
+*.md
