@@ -8,4 +8,4 @@
 
 ## NGUYỄN TƯỜNG HY
 
-## NGUYỄN ĐÌNH qw MINH HẢI
+## NGUYỄN ĐÌNH MINH HẢI
