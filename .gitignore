@@ -20,5 +20,4 @@ nb-configuration.xml
 .classpath
 .project
 .settings/
-target/
-
+/target/
