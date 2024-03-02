@@ -22,7 +22,7 @@ public class Form extends javax.swing.JFrame {
             double sum = 0.0;
             operation.setA(Double.parseDouble(this.jTextFieldSoThu1.getText()));
             operation.setB(Double.parseDouble(this.jTextFieldSoThu2.getText()));
-            sum = operation.getA() + operation.getB();
+            sum = operation.add();
             if (sum % 1 != 0) {
                 this.jLabelKQMAIN.setText(sum + "");
             } else {
