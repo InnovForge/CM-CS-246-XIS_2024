@@ -11,6 +11,12 @@ public class Operation {
 
     private double a, b;
 
+    public Operation(double a, double b) {
+        this.a = a;
+        this.b = b;
+    }
+    
+
     public double getA() {
         return a;
     }
