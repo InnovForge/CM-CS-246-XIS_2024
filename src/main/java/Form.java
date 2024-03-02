@@ -56,11 +56,6 @@ public class Form extends javax.swing.JFrame {
         jButtonChia.setForeground(Color.BLACK);
         ImageIcon image = new ImageIcon(getClass().getClassLoader().getResource("logo.png"));
         this.setIconImage(image.getImage());
-//        ImageIcon icon
-//                = new ImageIcon("C:\\Users\\bluez\\OneDrive\\Pictures\\LQM.jpg");
-//        ImageIcon icon1
-//                = new ImageIcon("C:\\Users\\bluez\\OneDrive\\Pictures\\1011863.png");
-//        this.setIconImage(icon.getImage());
     }
 
     /**
