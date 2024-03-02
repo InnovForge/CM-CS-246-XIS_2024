@@ -300,9 +300,7 @@ public class Form extends javax.swing.JFrame {
     private void jButtonCongActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButtonCongActionPerformed
         // TODO add your handling code here:
         try {
-            operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText()),
-            Double.parseDouble(this.jTextFieldSoThu2.getText()));
-            this.jLabelKQMAIN.setText(operation.multiply()+"");
+
         } catch (NumberFormatException e) {
             this.jLabelKQMAIN.setText("Nhập dữ liệu sai");
         }
@@ -328,6 +326,9 @@ public class Form extends javax.swing.JFrame {
             java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButtonNhanActionPerformed
         // TODO add your handling code here:
         try {
+            operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText()),
+            Double.parseDouble(this.jTextFieldSoThu2.getText()));
+            this.jLabelKQMAIN.setText(operation.multiply()+"");
 
         } catch (NumberFormatException e) {
             this.jLabelKQMAIN.setText("Nhập dữ liệu sai");
