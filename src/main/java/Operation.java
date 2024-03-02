@@ -26,14 +26,7 @@ public class Operation {
     public void setB(double b) {
         this.b = b;
     }
-//      double x = 2;
-//        double m = 1.1;
-//        double sum = (x + m);
-//        if (sum % 1 != 0) {
-//            System.out.println(sum);
-//        } else {
-//            System.out.println((int) sum);
-//        }
+
     public double add() {
         return a + b;
     }
@@ -53,3 +46,12 @@ public class Operation {
         return a / b;
     }
 }
+
+//      double x = 2;
+//        double m = 1.1;
+//        double sum = (x + m);
+//        if (sum % 1 != 0) {
+//            System.out.println(sum);
+//        } else {
+//            System.out.println((int) sum);
+//        }
