@@ -20,4 +20,3 @@ nb-configuration.xml
 .project
 .settings/
 /target/
-*.md
