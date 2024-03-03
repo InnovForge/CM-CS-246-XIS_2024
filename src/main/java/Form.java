@@ -312,6 +312,8 @@ public class Form extends javax.swing.JFrame {
     private void jButtonTruActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButtonTruActionPerformed
         // TODO add your handling code here:
         try {
+            operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText()),Double.parseDouble(this.jTextFieldSoThu2.getText()));
+            this.jLabelKQMAIN.setText(operation.minus()+"");
 
         } catch (NumberFormatException e) {
             this.jLabelKQMAIN.setText("Nhập dữ liệu sai");
