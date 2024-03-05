@@ -202,7 +202,9 @@ public class Form extends javax.swing.JFrame {
     private void jButtonCongActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButtonCongActionPerformed
         // TODO add your handling code here:
         try {
-
+            operation = new Operation(
+                    Double.parseDouble(jTextFieldSoThu1.getText()), Double.parseDouble(jTextFieldSoThu2.getText()));
+            jLabelKQMAIN.setText(operation.add()+"");
         } catch (NumberFormatException e) {
             this.jLabelKQMAIN.setText("Nhập dữ liệu sai");
         }
