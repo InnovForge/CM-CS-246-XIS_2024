@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -12,6 +13,7 @@ import java.util.ArrayList;
  */
 public class ProductManagement {
     private ArrayList<Product> products = new ArrayList<>();
+    Scanner sc = new Scanner(System.in);
     public void addProduct(Product product)
     {
         products.add(product);
