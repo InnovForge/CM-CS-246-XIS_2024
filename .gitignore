@@ -18,6 +18,5 @@ nb-configuration.xml
 .classpath
 .project
 .settings/
-/BaiThucHanh1/target/
-/ProductManagement/target/
+/target/
 
