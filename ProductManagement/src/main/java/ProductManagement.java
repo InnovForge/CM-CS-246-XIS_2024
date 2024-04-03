@@ -24,8 +24,19 @@ public class ProductManagement {
     }
     public void deleteProduct()
     {
-        
+        System.out.print("Input id product : ");
+        sc.nextLine();
+        String Id = sc.nextLine();
+        for (Product id : products) {
+            if (id.getProductId().equals(Id)) {
+                products.remove(id);
+                System.out.println("Delete susscessSuccessfully deleted product with id " + Id);
+                break;
+            }
+        }
+        System.out.println("There is no ID in the Products list !!!");
     }
+    
     public void searchProduct()
     {
         
