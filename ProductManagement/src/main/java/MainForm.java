@@ -7,11 +7,13 @@
  *
  * @author harvous
  */
+import ButtonComponent.TableActionCellRender;
 import UI.*;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.*;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
@@ -31,7 +33,8 @@ public class MainForm extends javax.swing.JFrame {
         model = new DefaultTableModel();
         styleInit();
         dataJTable(jTable1);
-
+        jTable1.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
+        jTable1.setFont(new Font("Arial", Font.BOLD, 20));
     }
     // NOTE: vi tri them row table;
     /**
@@ -56,7 +59,7 @@ public class MainForm extends javax.swing.JFrame {
 
         flatLafTheme = new UI.FlatLafTheme();
         themeNames = UI.Theme.getAllThemeNames();
-        flatLafTheme.setCurrentLookAndFeel(new FlatDarculaLaf());
+        flatLafTheme.setCurrentLookAndFeel(new FlatIntelliJLaf());
         FlatSVGIcon.ColorFilter.getInstance()
                 .add(Color.BLACK, null, Color.white)
                 .add(Color.white, null, Color.black);
@@ -69,6 +72,11 @@ public class MainForm extends javax.swing.JFrame {
         jTextField1.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon("svg/search.svg"));
         jComboBox2.setModel(new DefaultComboBoxModel<>(themeNames));
         jLabel11.setIcon(new FlatSVGIcon("svg/product.svg"));
+
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
 
     }
     /**
@@ -188,6 +196,8 @@ public class MainForm extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
+
+        jTextField1.setText("jTextField1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -378,7 +388,7 @@ public class MainForm extends javax.swing.JFrame {
                 java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, true
+                true, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -389,6 +399,7 @@ public class MainForm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setRowHeight(80);
         jScrollPane2.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
@@ -425,7 +436,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
         jPanel8.setMaximumSize(new java.awt.Dimension(264, 32767));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Product");
         jLabel11.setToolTipText("");
