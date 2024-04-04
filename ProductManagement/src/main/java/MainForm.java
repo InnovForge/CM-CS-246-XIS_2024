@@ -7,10 +7,10 @@
  *
  * @author harvous
  */
+import AppConfig.WrSettings;
 import ButtonComponent.TableActionCellRender;
 import UI.*;
 import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.*;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.Color;
 import java.awt.Font;
@@ -29,6 +29,8 @@ public class MainForm extends javax.swing.JFrame {
     DefaultTableModel model;
     FlatLafTheme flatLafTheme;
     String[] themeNames;
+    Map<String, javax.swing.LookAndFeel> themeMap;
+
     public MainForm() {
         model = new DefaultTableModel();
         styleInit();
@@ -46,7 +48,6 @@ public class MainForm extends javax.swing.JFrame {
         //model.addRow(addRowProduct("1", "hy", "100"));
         // ....
     }
-
     /**
      * **************************END******************************************
      */
@@ -59,7 +60,7 @@ public class MainForm extends javax.swing.JFrame {
 
         flatLafTheme = new UI.FlatLafTheme();
         themeNames = UI.Theme.getAllThemeNames();
-        flatLafTheme.setCurrentLookAndFeel(new FlatIntelliJLaf());
+
         FlatSVGIcon.ColorFilter.getInstance()
                 .add(Color.BLACK, null, Color.white)
                 .add(Color.white, null, Color.black);
@@ -78,6 +79,18 @@ public class MainForm extends javax.swing.JFrame {
         jTextField4.setText("");
         jTextField5.setText("");
 
+        themeMap = new HashMap<>();
+        for (UI.Theme theme : UI.Theme.values()) {
+            themeMap.put(theme.getNameTheme(), theme.getObjTheme());
+        }
+
+        String theme = WrSettings.getProperty("theme");
+        jComboBox2.setSelectedItem(theme);
+        if (themeMap.containsKey(theme)) {
+            flatLafTheme.setCurrentLookAndFeel(themeMap.get(theme));
+        }
+        SwingUtilities.updateComponentTreeUI(this);
+        //  System.out.println(theme);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -402,7 +415,7 @@ public class MainForm extends javax.swing.JFrame {
         jTable1.setRowHeight(80);
         jScrollPane2.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(30);
         }
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -503,21 +516,16 @@ public class MainForm extends javax.swing.JFrame {
     model.addRow(rowData);
     jTextField2.setText("");
     jTextField4.setText("");
-    jTextField5.setText("");
-        
-
+        jTextField5.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
 
         String selectedTheme = jComboBox2.getSelectedItem().toString();
-        Map<String, javax.swing.LookAndFeel> themeMap = new HashMap<>();
-        for (UI.Theme theme : UI.Theme.values()) {
-            themeMap.put(theme.getNameTheme(), theme.getObjTheme());
-        }
         if (themeMap.containsKey(selectedTheme)) {
             flatLafTheme.setCurrentLookAndFeel(themeMap.get(selectedTheme));
         }
+        WrSettings.setProperty("theme", selectedTheme);
         SwingUtilities.updateComponentTreeUI(this);
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
