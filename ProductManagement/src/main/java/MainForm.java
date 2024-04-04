@@ -86,7 +86,6 @@ public class MainForm extends javax.swing.JFrame {
         for (UI.Theme theme : UI.Theme.values()) {
             themeMap.put(theme.getNameTheme(), theme.getObjTheme());
         }
-
         String theme = WrSettings.getProperty("theme");
         if (theme != null) {
             jComboBox2.setSelectedItem(theme);
@@ -98,7 +97,7 @@ public class MainForm extends javax.swing.JFrame {
         }
 
         SwingUtilities.updateComponentTreeUI(this);
-        //  System.out.println(theme);
+        // System.out.println(theme);
     }
 
     /**

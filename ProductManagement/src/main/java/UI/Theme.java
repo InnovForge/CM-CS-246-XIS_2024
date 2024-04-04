@@ -5,10 +5,23 @@
 package UI;
 import com.formdev.flatlaf.intellijthemes.*;
 import com.formdev.flatlaf.*;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneDarkIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneLightIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDarkerIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDeepOceanIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialOceanicIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialPalenightIJTheme;
 import com.formdev.flatlaf.themes.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.LookAndFeel;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMonokaiProIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMoonlightIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 /**
  *
  * @author harvous
@@ -50,8 +63,24 @@ public enum Theme {
     SOLARIZED_LIGHT("Solarized Light", new FlatSolarizedLightIJTheme()),
     SPACEGRAY("Spacegray", new FlatSpacegrayIJTheme()),
     VUESION("Vuesion", new FlatVuesionIJTheme()),
-    XCODE_DARK("Xcode-Dark", new FlatXcodeDarkIJTheme());
-
+    XCODE_DARK("Xcode-Dark", new FlatXcodeDarkIJTheme()),
+    ARC_DARK_MATERIAL("Arc Dark (Material)", new FlatArcDarkIJTheme()),
+    ATOM_ONE_DARK("Atom One Dark (Material)", new FlatAtomOneDarkIJTheme()),
+    ATOM_ONE_LIGHT("Atom One Light (Material)", new FlatAtomOneLightIJTheme()),
+    DRACULA_MATERIAL("Dracula (Material)", new FlatDraculaIJTheme()),
+    GITHUB("GitHub (Material)", new FlatGitHubIJTheme()),
+    GITHUB_DARK("GitHub Dark (Material)", new FlatGitHubDarkIJTheme()),
+    LIGHT_OWL("Light Owl (Material)", new FlatLightOwlIJTheme()),
+    MATERIAL_DARKER("Material Darker (Material)", new FlatMaterialDarkerIJTheme()),
+    MATERIAL_DEEP_OCEAN("Material Deep Ocean (Material)", new FlatMaterialDeepOceanIJTheme()),
+    MATERIAL_LIGHTER("Material Lighter (Material)", new FlatMaterialLighterIJTheme()),
+    MATERIAL_OCEANIC("Material Oceanic (Material)", new FlatMaterialOceanicIJTheme()),
+    MATERIAL_PALENIGHT("Material Palenight (Material)", new FlatMaterialPalenightIJTheme()),
+    MONOKAI_PRO_MATERIAL("Monokai Pro (Material)", new FlatMonokaiProIJTheme()),
+    MOONLIGHT("Moonlight (Material)", new FlatMoonlightIJTheme()),
+    NIGHT_OWL("Night Owl (Material)", new FlatNightOwlIJTheme()),
+    SOLARIZED_DARK_MATERIAL("Solarized Dark (Material)", new FlatSolarizedDarkIJTheme()),
+    SOLARIZED_LIGHT_MATERIAL("Solarized Light (Material)", new FlatSolarizedLightIJTheme());
 
     private final String _nameTheme;
     private final LookAndFeel _objTheme;
