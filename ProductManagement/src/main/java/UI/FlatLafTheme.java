@@ -22,48 +22,8 @@ import javax.swing.UIManager;
  */
 public class FlatLafTheme {
     private javax.swing.LookAndFeel currentLookAndFeel;
-
-    public String[] themeNames = {
-        "Arc",
-        "Arc - Orange",
-        "Arc Dark",
-        "Arc Dark - Orange",
-        "Carbon",
-        "Cobalt 2",
-        "Cyan light",
-        "Dark Flat",
-        "Dark purple",
-        "Dracula",
-        "Gradianto Dark Fuchsia",
-        "Gradianto Deep Ocean",
-        "Gradianto Midnight Blue",
-        "Gradianto Nature Green",
-        "Gray",
-        "Gruvbox Dark Hard",
-        "Gruvbox Dark Medium",
-        "Gruvbox Dark Soft",
-        "Hiberbee Dark",
-        "High contrast",
-        "Light Flat",
-        "Material Design Dark",
-        "Monocai",
-        "Monokai Pro",
-        "Nord",
-        "One Dark",
-        "Solarized Dark",
-        "Solarized Light",
-        "Spacegray",
-        "Vuesion",
-        "Xcode-Dark"
-    };
     public FlatLafTheme() {
         FlatLightLaf.registerCustomDefaultsSource("style");
-        try {
-            currentLookAndFeel = new FlatDarculaLaf();
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
-        }
-
         UIManager.put("Component.focusWidth", 2);
         UIManager.put("Button.arc", 13);
         //  UIManager.put("TextComponent.arc", 5);

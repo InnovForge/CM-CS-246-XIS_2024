@@ -3,20 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author harvous
  */
-import UI.FlatLafTheme;
+import UI.*;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.*;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.intellijthemes.*;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingUtilities;
-
-
 
 public class MainForm extends javax.swing.JFrame {
 
@@ -25,19 +24,20 @@ public class MainForm extends javax.swing.JFrame {
      */
     FlatLafTheme flatLafTheme;
     String[] themeNames;
+
     public MainForm() {
         flatLafTheme = new UI.FlatLafTheme();
-
-        themeNames = flatLafTheme.themeNames;
+        themeNames = UI.Theme.getAllThemeNames();
         flatLafTheme.setCurrentLookAndFeel(new FlatDarculaLaf());
         initComponents();
         this.setSize(1440, 800);
         this.setLocationRelativeTo(null);
-        
+
         //   jPanel7.setBackground(Color.decode("#E0E2E7"));
         jTextField1.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Search some thing");
         jTextField1.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon("svg/search.svg"));
         jComboBox2.setModel(new DefaultComboBoxModel<>(themeNames));
+        //  System.out.println(themeNames.length);
 
     }
 
@@ -402,25 +402,18 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
 
         String selectedTheme = jComboBox2.getSelectedItem().toString();
-        // Apply the selected theme
-        switch (selectedTheme) {
-            case "Arc":
-                flatLafTheme.setCurrentLookAndFeel(new FlatArcIJTheme()); // 'frame' is your JFrame instance
-                break;
-            case "Arc - Orange":
-                flatLafTheme.setCurrentLookAndFeel(new FlatArcOrangeIJTheme());
-                break;
-            case "Arc Dark":
-                flatLafTheme.setCurrentLookAndFeel(new FlatArcDarkIJTheme());
-                break;
-            default:
-                break;
+        Map<String, javax.swing.LookAndFeel> themeMap = new HashMap<>();
+        for (UI.Theme theme : UI.Theme.values()) {
+            themeMap.put(theme.getNameTheme(), theme.getObjTheme());
+        }
+        if (themeMap.containsKey(selectedTheme)) {
+            flatLafTheme.setCurrentLookAndFeel(themeMap.get(selectedTheme));
         }
         SwingUtilities.updateComponentTreeUI(this);
     }//GEN-LAST:event_jComboBox2ActionPerformed
