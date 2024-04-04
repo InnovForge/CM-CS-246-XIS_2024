@@ -40,7 +40,7 @@ public class MainForm extends javax.swing.JFrame {
     private void dataJTable(JTable table) {
         model = (DefaultTableModel) table.getModel();
         // chi can them gia tri la duoc
-        model.addRow(addRowProduct("1", "hy", "100"));
+        //model.addRow(addRowProduct("1", "hy", "100"));
         // ....
     }
 
@@ -237,16 +237,17 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        jButtonEdit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButtonEdit.setText("EDIT");
-        jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditActionPerformed(evt);
-            }
-        });
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton2.setText("EDIT");
 
-        jButtonDelete.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButtonDelete.setText("DELETE");
+        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton3.setText("DELETE");
+
+        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton4.setText("CLEAR");
+
+        jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextField4.setText("jTextField4");
 
         jButtonClear.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButtonClear.setText("CLEAR");
@@ -460,6 +461,11 @@ public class MainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
 
         String selectedTheme = jComboBox2.getSelectedItem().toString();
@@ -472,18 +478,6 @@ public class MainForm extends javax.swing.JFrame {
         }
         SwingUtilities.updateComponentTreeUI(this);
     }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEditActionPerformed
-
-    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAddActionPerformed
 
     /**
      * @param args the command line arguments
