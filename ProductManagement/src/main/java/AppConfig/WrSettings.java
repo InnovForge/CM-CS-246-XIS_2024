@@ -14,14 +14,14 @@ import java.util.Properties;
  * @author harvous
  */
 public class WrSettings {
-    private static final String _CONFIG_FILE = "Settings.properties";
+    private static final String CONFIG_FILE = "Settings.properties";
     private static Properties properties;
     static {
         properties = new Properties();
         try {
-            properties.load(new FileInputStream(_CONFIG_FILE));
+            properties.load(new FileInputStream(CONFIG_FILE));
         } catch (IOException e) {
-            e.printStackTrace();
+            //  e.printStackTrace();
         }
     }
 
@@ -32,9 +32,9 @@ public class WrSettings {
     public static void setProperty(String key, String value) {
         properties.setProperty(key, value);
         try {
-            properties.store(new FileOutputStream(_CONFIG_FILE), null);
+            properties.store(new FileOutputStream(CONFIG_FILE), null);
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 }
