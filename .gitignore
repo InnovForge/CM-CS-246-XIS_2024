@@ -21,3 +21,4 @@ nb-configuration.xml
 /target/
 
 /ProductManagement/target/maven-status
+/ProductManagement/Settings.properties
