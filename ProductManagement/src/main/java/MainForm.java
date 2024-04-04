@@ -40,7 +40,7 @@ public class MainForm extends javax.swing.JFrame {
     private void dataJTable(JTable table) {
         model = (DefaultTableModel) table.getModel();
         // chi can them gia tri la duoc
-        model.addRow(addRowProduct("1", "hy", "100"));
+        //model.addRow(addRowProduct("1", "hy", "100"));
         // ....
     }
 
@@ -247,9 +247,19 @@ public class MainForm extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton3.setText("DELETE");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton4.setText("CLEAR");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField4.setText("jTextField4");
@@ -476,6 +486,14 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Product pro;
+        pro = new Product(jTextField2.getText(),jTextField4.getText(), jTextField5.getText());
+        Object[] rowData = {false, jTextField2.getText(), jTextField4.getText(), jTextField5.getText(), null};
+    model.addRow(rowData);
+    jTextField2.setText("");
+    jTextField4.setText("");
+    jTextField5.setText("");
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -491,6 +509,14 @@ public class MainForm extends javax.swing.JFrame {
         }
         SwingUtilities.updateComponentTreeUI(this);
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
