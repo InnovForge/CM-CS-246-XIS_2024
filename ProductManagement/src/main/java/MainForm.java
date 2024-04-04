@@ -11,6 +11,7 @@ import AppConfig.WrSettings;
 import ButtonComponent.TableActionCellRender;
 import UI.*;
 import com.formdev.flatlaf.FlatClientProperties;
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.Color;
 import java.awt.Font;
@@ -38,6 +39,7 @@ public class MainForm extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
         jTable1.setFont(new Font("Arial", Font.BOLD, 20));
     }
+
     // NOTE: vi tri them row table;
     /**
      * **************************BEGIN*********************************************
@@ -48,14 +50,15 @@ public class MainForm extends javax.swing.JFrame {
         //model.addRow(addRowProduct("1", "hy", "100"));
         // ....
     }
+
     /**
      * **************************END******************************************
      */
-
     private Object[] addRowProduct(String id, String name, String price) {
         Product product = new Product(id, name, price);
         return new Object[]{false, product.getProductId(), product.getProductName(), product.getProductPrice()};
     }
+
     private void styleInit() {
 
         flatLafTheme = new UI.FlatLafTheme();
@@ -85,13 +88,19 @@ public class MainForm extends javax.swing.JFrame {
         }
 
         String theme = WrSettings.getProperty("theme");
-        jComboBox2.setSelectedItem(theme);
-        if (themeMap.containsKey(theme)) {
-            flatLafTheme.setCurrentLookAndFeel(themeMap.get(theme));
+        if (theme != null) {
+            jComboBox2.setSelectedItem(theme);
+            if (themeMap.containsKey(theme)) {
+                flatLafTheme.setCurrentLookAndFeel(themeMap.get(theme));
+            }
+        } else {
+            flatLafTheme.setCurrentLookAndFeel(new FlatIntelliJLaf());
         }
+
         SwingUtilities.updateComponentTreeUI(this);
         //  System.out.println(theme);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -511,11 +520,11 @@ public class MainForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Product pro;
-        pro = new Product(jTextField2.getText(),jTextField4.getText(), jTextField5.getText());
+        pro = new Product(jTextField2.getText(), jTextField4.getText(), jTextField5.getText());
         Object[] rowData = {false, jTextField2.getText(), jTextField4.getText(), jTextField5.getText(), null};
-    model.addRow(rowData);
-    jTextField2.setText("");
-    jTextField4.setText("");
+        model.addRow(rowData);
+        jTextField2.setText("");
+        jTextField4.setText("");
         jTextField5.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
