@@ -19,8 +19,12 @@ import java.awt.Font;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
 
 public class MainForm extends javax.swing.JFrame {
@@ -80,7 +84,7 @@ public class MainForm extends javax.swing.JFrame {
         jLabel1.putClientProperty("FlatLaf.styleClass", "h2");
         jLabel11.putClientProperty("FlatLaf.styleClass", "h1");
         jLabel11.setIcon(new FlatSVGIcon("svg/product.svg"));
-        
+
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField4.setText("");
@@ -100,7 +104,7 @@ public class MainForm extends javax.swing.JFrame {
         } else {
             flatLafTheme.setCurrentLookAndFeel(new FlatIntelliJLaf());
         }
-    }    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -580,11 +584,11 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         Product pro;
         pro = new Product(jTextField2.getText(), jTextField4.getText(), jTextField5.getText());
-        Object[] rowData = {false,jTextField2.getText(), jTextField4.getText(), jTextField5.getText(),null};
+        Object[] rowData = {false, jTextField2.getText(), jTextField4.getText(), jTextField5.getText(), null};
         model.addRow(rowData);
-        
+
         clear();
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -597,23 +601,41 @@ public class MainForm extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(this);
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+    JPanel panel;
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        for (int i = model.getRowCount() - 1; i >= 0; i--) {
-            if ((boolean) model.getValueAt(i, 0)) {
-                model.removeRow(i);
+
+//        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+//        for (int i = model.getRowCount() - 1; i >= 0; i--) {
+//            if ((boolean) model.getValueAt(i, 0)) {
+//                model.removeRow(i);
+//            }
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            for (int i = model.getRowCount() - 1; i >= 0; i--) {
+                if ((boolean) model.getValueAt(i, 0)) {
+                    UIManager.put("test", new FontUIResource(new Font("Notification", Font.BOLD, 20)));
+                    int n = JOptionPane.showConfirmDialog(panel, "Bạn có muốn xóa dòng " + (i+1) + " không ??", "Notification", JOptionPane.YES_NO_OPTION);
+                    if (n == JOptionPane.YES_OPTION) {
+
+                        model.removeRow(i);
+
+                    }
+
+                }
             }
-        }    
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    public void clear(){
+    
+
+    public void clear() {
         jTextField2.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
         STTHangText.setText("");
     }
-    
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         clear();
@@ -628,23 +650,23 @@ public class MainForm extends javax.swing.JFrame {
         jLabel3.setText("CHANGE ID");
         jLabel5.setText("ChANGE NAME");
         jLabel6.setText("CHANGE PRICE");
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSuaActionPerformed
         // TODO add your handling code here:
         int row = Integer.parseInt(STTHangText.getText());
-        
+
         row -= 1;
-        
-         String id = jTextField2.getText();
-         String name = jTextField4.getText();
-         String price = jTextField5.getText();
-         
-            model.setValueAt(id, row, 1);
-            model.setValueAt(name, row, 2);
-            model.setValueAt(price, row, 3);
-            model.setValueAt(null, row, 4);
+
+        String id = jTextField2.getText();
+        String name = jTextField4.getText();
+        String price = jTextField5.getText();
+
+        model.setValueAt(id, row, 1);
+        model.setValueAt(name, row, 2);
+        model.setValueAt(price, row, 3);
+        model.setValueAt(null, row, 4);
 
     }//GEN-LAST:event_jButtonSuaActionPerformed
 
@@ -665,9 +687,9 @@ public class MainForm extends javax.swing.JFrame {
         jLabel3.setText("ID");
         jLabel5.setText("NAME");
         jLabel6.setText("PRICE");
-        
+
         clear();
-        
+
     }//GEN-LAST:event_jButtonXongActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
