@@ -18,7 +18,7 @@ nb-configuration.xml
 .classpath
 .project
 .settings/
-/target/
+*/target/**
 
 /ProductManagement/target/maven-status
 /ProductManagement/Settings.properties
