@@ -20,9 +20,8 @@ nb-configuration.xml
 .settings/
 
 /target/
-*/target/**
+**/target/**
 **/META-INF/
 !.mvn/wrapper/maven-wrapper.jar
-
-/ProductManagement/target/maven-status
-/ProductManagement/Settings.properties
+**/Settings.properties
+ProductManagement/target
