@@ -16,6 +16,7 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
@@ -36,6 +37,7 @@ public class MainForm extends javax.swing.JFrame {
     FlatLafTheme flatLafTheme;
     String[] themeNames;
     Map<String, javax.swing.LookAndFeel> themeMap;
+         ArrayList<Object> arr = new ArrayList<>();
 
     public MainForm() {
         model = new DefaultTableModel();
@@ -127,6 +129,8 @@ public class MainForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
+        jButtonSearch = new javax.swing.JButton();
+        jButtonXong1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
@@ -240,19 +244,40 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        jButtonSearch.setText("Search");
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchActionPerformed(evt);
+            }
+        });
+
+        jButtonXong1.setText("Xong!");
+        jButtonXong1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonXong1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 508, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonXong1)
+                .addGap(0, 297, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSearch)
+                    .addComponent(jButtonXong1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -531,7 +556,7 @@ public class MainForm extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -586,7 +611,13 @@ public class MainForm extends javax.swing.JFrame {
         pro = new Product(jTextField2.getText(), jTextField4.getText(), jTextField5.getText());
         Object[] rowData = {false, jTextField2.getText(), jTextField4.getText(), jTextField5.getText(), null};
         model.addRow(rowData);
-
+        for(int i = 0 ; i < model.getRowCount() ; i++)
+        {
+            for(int j = 0 ; j <model.getColumnCount() ; j++)
+            {
+                arr.add(model.getValueAt(i, j));
+            }
+        }
         clear();
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -696,6 +727,17 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_jButtonSearchActionPerformed
+
+    private void jButtonXong1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonXong1ActionPerformed
+        // TODO add your handling code here:
+        
+
+    }//GEN-LAST:event_jButtonXong1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -740,8 +782,10 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonSearch;
     private javax.swing.JButton jButtonSua;
     private javax.swing.JButton jButtonXong;
+    private javax.swing.JButton jButtonXong1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
