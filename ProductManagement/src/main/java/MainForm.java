@@ -582,9 +582,9 @@ public class MainForm extends javax.swing.JFrame {
         pro = new Product(jTextField2.getText(), jTextField4.getText(), jTextField5.getText());
         Object[] rowData = {false,jTextField2.getText(), jTextField4.getText(), jTextField5.getText(),null};
         model.addRow(rowData);
-        jTextField2.setText("");
-        jTextField4.setText("");
-        jTextField5.setText("");
+        
+        clear();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -606,9 +606,17 @@ public class MainForm extends javax.swing.JFrame {
             }
         }    
     }//GEN-LAST:event_jButton3ActionPerformed
- 
+
+    public void clear(){
+        jTextField2.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        STTHangText.setText("");
+    }
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        clear();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -626,10 +634,13 @@ public class MainForm extends javax.swing.JFrame {
     private void jButtonSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSuaActionPerformed
         // TODO add your handling code here:
         int row = Integer.parseInt(STTHangText.getText());
+        
+        row -= 1;
+        
          String id = jTextField2.getText();
          String name = jTextField4.getText();
          String price = jTextField5.getText();
-    
+         
             model.setValueAt(id, row, 1);
             model.setValueAt(name, row, 2);
             model.setValueAt(price, row, 3);
@@ -654,6 +665,9 @@ public class MainForm extends javax.swing.JFrame {
         jLabel3.setText("ID");
         jLabel5.setText("NAME");
         jLabel6.setText("PRICE");
+        
+        clear();
+        
     }//GEN-LAST:event_jButtonXongActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
