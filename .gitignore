@@ -18,7 +18,11 @@ nb-configuration.xml
 .classpath
 .project
 .settings/
+
+/target/
 */target/**
+**/META-INF/
+!.mvn/wrapper/maven-wrapper.jar
 
 /ProductManagement/target/maven-status
 /ProductManagement/Settings.properties
