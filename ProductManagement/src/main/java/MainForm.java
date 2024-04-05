@@ -13,6 +13,7 @@ import UI.*;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.HashMap;
@@ -37,7 +38,8 @@ public class MainForm extends javax.swing.JFrame {
         styleInit();
         dataJTable(jTable1);
         jTable1.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
-        jTable1.setFont(new Font("Arial", Font.BOLD, 18));
+        jTable1.setFont(new Font(FlatJetBrainsMonoFont.FAMILY, Font.BOLD, 15));
+
     }
 
     // NOTE: vi tri them row table;
@@ -75,12 +77,15 @@ public class MainForm extends javax.swing.JFrame {
         jTextField1.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Search product...");
         jTextField1.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon("svg/search.svg"));
         jComboBox2.setModel(new DefaultComboBoxModel<>(themeNames));
+        jLabel1.putClientProperty("FlatLaf.styleClass", "h2");
+        jLabel11.putClientProperty("FlatLaf.styleClass", "h1");
         jLabel11.setIcon(new FlatSVGIcon("svg/product.svg"));
-
+        
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
+        jTextField1.putClientProperty("TextComponent.arc", 999);
 
         themeMap = new HashMap<>();
         for (UI.Theme theme : UI.Theme.values()) {
@@ -95,9 +100,6 @@ public class MainForm extends javax.swing.JFrame {
         } else {
             flatLafTheme.setCurrentLookAndFeel(new FlatIntelliJLaf());
         }
-
-        SwingUtilities.updateComponentTreeUI(this);
-        // System.out.println(theme);
     }    
 
     /**
@@ -208,7 +210,6 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Product");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -506,14 +507,13 @@ public class MainForm extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
 
         jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
         jPanel8.setMaximumSize(new java.awt.Dimension(264, 32767));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Product");
         jLabel11.setToolTipText("");
@@ -566,7 +566,7 @@ public class MainForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1590, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1534, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
