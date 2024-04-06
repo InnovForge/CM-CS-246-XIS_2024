@@ -686,6 +686,10 @@ public class MainForm extends javax.swing.JFrame {
                     model.removeRow(i);
 
                 }
+                if(n == JOptionPane.NO_OPTION){
+//                    Object[] rowData = {false, jTextField2.getText(), jTextField4.getText(), jTextField5.getText(), null};
+                    model.setValueAt(false, i, 0);
+                }
 
             }
         }
