@@ -73,6 +73,15 @@ public class MainForm extends javax.swing.JFrame {
         model.addRow(addRowProduct("987654", "Tom", "22000"));
         model.addRow(addRowProduct("246810", "Sophia", "25000"));
         model.addRow(addRowProduct("135790", "Oliver", "23000"));
+        for (int i = 0; i < model.getRowCount(); i++) {
+            for (int j = 0; j < model.getColumnCount(); j++) {
+                arr.add(model.getValueAt(i, j));
+            }
+        }
+        System.out.println(model.getRowCount());
+        for (Object string : arr) {
+            System.out.println(string);
+        }
         // ....
     }
 
@@ -288,7 +297,7 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        jButtonXong1.setText("Xong!");
+        jButtonXong1.setText("Done!");
         jButtonXong1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonXong1ActionPerformed(evt);
@@ -437,16 +446,16 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabelSTTsanpham.setText("Nhap STT san pham ");
+        jLabelSTTsanpham.setText("Enter the row number to edit");
 
-        jButtonSua.setText("Sua");
+        jButtonSua.setText("Edit");
         jButtonSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSuaActionPerformed(evt);
             }
         });
 
-        jButtonXong.setText("Xong!");
+        jButtonXong.setText("Done!");
         jButtonXong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonXongActionPerformed(evt);
@@ -483,7 +492,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabelSTTsanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelSTTsanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(STTHangText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -491,7 +500,7 @@ public class MainForm extends javax.swing.JFrame {
                         .addComponent(jButtonSua)
                         .addGap(58, 58, 58)
                         .addComponent(jButtonXong)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -725,15 +734,25 @@ public class MainForm extends javax.swing.JFrame {
         int row = Integer.parseInt(STTHangText.getText());
 
         row -= 1;
+        if(jTextField2.getText().isEmpty() != true)
+        {
+            String id = jTextField2.getText();
+            model.setValueAt(id, row, 1);
 
-        String id = jTextField2.getText();
-        String name = jTextField4.getText();
+        }
+        if(jTextField4.getText().isEmpty() != true)
+        {
+            String name = jTextField4.getText();
+            model.setValueAt(name, row, 2);
+
+        }
+        if(jTextField5.getText().isEmpty() != true)
+        {
         String price = jTextField5.getText();
-
-        model.setValueAt(id, row, 1);
-        model.setValueAt(name, row, 2);
         model.setValueAt(price, row, 3);
+        }
         model.setValueAt(null, row, 4);
+        
 
     }//GEN-LAST:event_jButtonSuaActionPerformed
 
@@ -762,9 +781,27 @@ public class MainForm extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
+    
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         // TODO add your handling code here:
+        String searchId = jTextField1.getText();
+        int c = 0;
+    for (int i = 1; i < arr.size(); i += 5) {
+        String id = arr.get(i).toString();
+        if (id.equals(searchId)) {
+            String tmp = "ID: " + arr.get(i).toString() + " " + "Name: " +
+                    arr.get(i+1).toString()+ " " + "Price: " + arr.get(i+2).toString();
+                    JOptionPane.showMessageDialog(panel, tmp);
+            break;
+             //model.addRow(new Object[]{arr.get(i), arr.get(i+1), arr.get(i+2)});
+        }
+        c+=1;
+    }
+      if(c== 14)
+      {
+           JOptionPane.showMessageDialog(panel, "Not found");
+
+      }
 
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
