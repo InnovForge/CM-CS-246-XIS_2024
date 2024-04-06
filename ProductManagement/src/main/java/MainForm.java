@@ -288,7 +288,7 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        jButtonXong1.setText("Xong!");
+        jButtonXong1.setText("Done!");
         jButtonXong1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonXong1ActionPerformed(evt);
@@ -437,16 +437,16 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabelSTTsanpham.setText("Nhap STT san pham ");
+        jLabelSTTsanpham.setText("Enter the row number to edit");
 
-        jButtonSua.setText("Sua");
+        jButtonSua.setText("Edit");
         jButtonSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSuaActionPerformed(evt);
             }
         });
 
-        jButtonXong.setText("Xong!");
+        jButtonXong.setText("Done!");
         jButtonXong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonXongActionPerformed(evt);
@@ -483,7 +483,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabelSTTsanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelSTTsanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(STTHangText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -491,7 +491,7 @@ public class MainForm extends javax.swing.JFrame {
                         .addComponent(jButtonSua)
                         .addGap(58, 58, 58)
                         .addComponent(jButtonXong)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -725,15 +725,25 @@ public class MainForm extends javax.swing.JFrame {
         int row = Integer.parseInt(STTHangText.getText());
 
         row -= 1;
+        if(jTextField2.getText().isEmpty() != true)
+        {
+            String id = jTextField2.getText();
+            model.setValueAt(id, row, 1);
 
-        String id = jTextField2.getText();
-        String name = jTextField4.getText();
+        }
+        if(jTextField4.getText().isEmpty() != true)
+        {
+            String name = jTextField4.getText();
+            model.setValueAt(name, row, 2);
+
+        }
+        if(jTextField5.getText().isEmpty() != true)
+        {
         String price = jTextField5.getText();
-
-        model.setValueAt(id, row, 1);
-        model.setValueAt(name, row, 2);
         model.setValueAt(price, row, 3);
+        }
         model.setValueAt(null, row, 4);
+        
 
     }//GEN-LAST:event_jButtonSuaActionPerformed
 
