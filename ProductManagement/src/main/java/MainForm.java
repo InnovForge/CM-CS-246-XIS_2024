@@ -15,7 +15,14 @@ import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Insets;
+import java.awt.Rectangle;
+import java.awt.Window;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -24,10 +31,17 @@ import javax.swing.plaf.FontUIResource;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class MainForm extends javax.swing.JFrame {
 
@@ -42,14 +56,15 @@ public class MainForm extends javax.swing.JFrame {
     HelperApachePoi apachePoi;
 
     public MainForm() {
+
         ImageIcon image = new ImageIcon(getClass().getClassLoader().getResource("Logo.png"));
         this.setIconImage(image.getImage());
         apachePoi = new HelperApachePoi();
         model = new DefaultTableModel();
         styleInit();
-        dataJTable(jTable1);
-        jTable1.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
-        jTable1.setFont(new Font(FlatJetBrainsMonoFont.FAMILY, Font.BOLD, 15));
+        initEvent();
+        //     jTable1.updateUI();
+
     }
 
     // NOTE: vi tri them row table;
@@ -104,6 +119,9 @@ public class MainForm extends javax.swing.JFrame {
                 .add(Color.white, null, Color.black);
         initComponents();
 
+        dataJTable(jTable1);
+        jTable1.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
+        jTable1.setFont(new Font(FlatJetBrainsMonoFont.FAMILY, Font.BOLD, 15));
 
         //   jPanel7.setBackground(Color.decode("#E0E2E7"));
         jTextField1.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Search product...");
@@ -139,8 +157,73 @@ public class MainForm extends javax.swing.JFrame {
             flatLafTheme.setCurrentLookAndFeel(new FlatIntelliJLaf());
             SwingUtilities.updateComponentTreeUI(this);
         }
+        //    SwingUtilities.updateComponentTreeUI();
+
+    }
+    private void initEvent() {
+        jTextField1.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updateTable();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateTable();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                updateTable();
+            }
+        });
+
+        jTextField1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (trailingIconSearch(e, jTextField1)) {
+                    jTextField1.setText("");
+                }
+            }
+        });
+
+        jTextField1.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                if (trailingIconSearch(e, jTextField1)) {
+                    jTextField1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                } else {
+                    jTextField1.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+                }
+            }
+        });
     }
 
+    private static boolean trailingIconSearch(MouseEvent e, JTextField textField) {
+        Object value = textField.getClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON);
+        if (value instanceof Icon) {
+            Icon trailingIcon = (Icon) value;
+            Insets insets = textField.getInsets();
+            int iconX = textField.getWidth() - insets.right - trailingIcon.getIconWidth();
+            int iconY = (textField.getHeight() - trailingIcon.getIconHeight()) / 2;
+            Rectangle iconBounds = new Rectangle(iconX, iconY, trailingIcon.getIconWidth(), trailingIcon.getIconHeight());
+            return iconBounds.contains(e.getPoint());
+        }
+        return false;
+    }
+
+    private void updateTable() {
+        String text = jTextField1.getText();
+        final TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
+        jTable1.setRowSorter(sorter);
+
+        if (!text.isEmpty()) {
+            jTextField1.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, new FlatSVGIcon("svg/cross.svg"));
+            sorter.setRowFilter(RowFilter.regexFilter(text));
+        } else {
+            jTextField1.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, new FlatSVGIcon("svg/cross.svg").isDisabled());
+            sorter.setRowFilter(null);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
