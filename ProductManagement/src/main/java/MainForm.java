@@ -24,6 +24,7 @@ import javax.swing.plaf.FontUIResource;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -41,6 +42,8 @@ public class MainForm extends javax.swing.JFrame {
     HelperApachePoi apachePoi;
 
     public MainForm() {
+        ImageIcon image = new ImageIcon(getClass().getClassLoader().getResource("Logo.png"));
+        this.setIconImage(image.getImage());
         apachePoi = new HelperApachePoi();
         model = new DefaultTableModel();
         styleInit();
