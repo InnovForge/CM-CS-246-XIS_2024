@@ -128,6 +128,7 @@ public class MainForm extends javax.swing.JFrame {
             }
         } else {
             flatLafTheme.setCurrentLookAndFeel(new FlatIntelliJLaf());
+            SwingUtilities.updateComponentTreeUI(this);
         }
     }
 
