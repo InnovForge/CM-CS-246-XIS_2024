@@ -73,6 +73,15 @@ public class MainForm extends javax.swing.JFrame {
         model.addRow(addRowProduct("987654", "Tom", "22000"));
         model.addRow(addRowProduct("246810", "Sophia", "25000"));
         model.addRow(addRowProduct("135790", "Oliver", "23000"));
+        for (int i = 0; i < model.getRowCount(); i++) {
+            for (int j = 0; j < model.getColumnCount(); j++) {
+                arr.add(model.getValueAt(i, j));
+            }
+        }
+        System.out.println(model.getRowCount());
+        for (Object string : arr) {
+            System.out.println(string);
+        }
         // ....
     }
 
@@ -772,9 +781,27 @@ public class MainForm extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
+    
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         // TODO add your handling code here:
+        String searchId = jTextField1.getText();
+        int c = 0;
+    for (int i = 1; i < arr.size(); i += 5) {
+        String id = arr.get(i).toString();
+        if (id.equals(searchId)) {
+            String tmp = "ID: " + arr.get(i).toString() + " " + "Name: " +
+                    arr.get(i+1).toString()+ " " + "Price: " + arr.get(i+2).toString();
+                    JOptionPane.showMessageDialog(panel, tmp);
+            break;
+             //model.addRow(new Object[]{arr.get(i), arr.get(i+1), arr.get(i+2)});
+        }
+        c+=1;
+    }
+      if(c== 14)
+      {
+           JOptionPane.showMessageDialog(panel, "Not found");
+
+      }
 
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
