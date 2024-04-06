@@ -4,7 +4,8 @@ package UI;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
 import java.awt.Color;
 import java.awt.Insets;
 import javax.swing.LookAndFeel;
@@ -15,9 +16,14 @@ import javax.swing.UIManager;
  * @author harvous
  */
 public class FlatLafTheme {
+
     private javax.swing.LookAndFeel currentLookAndFeel;
+
     public FlatLafTheme() {
-        FlatLightLaf.registerCustomDefaultsSource("style");
+        //.registerCustomDefaultsSource("style");
+        // FlatLaf.registerCustomDefaultsSource("style");
+    //    FlatLaf.setPreferredFontFamily(preferredFontFamily);
+        FlatLaf.setPreferredMonospacedFontFamily(FlatJetBrainsMonoFont.FAMILY);
         UIManager.put("Component.focusWidth", 2);
         UIManager.put("Button.arc", 13);
         //  UIManager.put("TextComponent.arc", 5);

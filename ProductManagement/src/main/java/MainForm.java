@@ -7,7 +7,7 @@
  *
  * @author harvous
  */
-import AppConfig.WrSettings;
+import Helper.*;
 import ButtonComponent.TableActionCellRender;
 import UI.*;
 import com.formdev.flatlaf.FlatClientProperties;
@@ -17,15 +17,15 @@ import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
 
 public class MainForm extends javax.swing.JFrame {
@@ -37,15 +37,16 @@ public class MainForm extends javax.swing.JFrame {
     FlatLafTheme flatLafTheme;
     String[] themeNames;
     Map<String, javax.swing.LookAndFeel> themeMap;
-         ArrayList<Object> arr = new ArrayList<>();
+    ArrayList<Object> arr = new ArrayList<>();
+    HelperApachePoi apachePoi;
 
     public MainForm() {
+        apachePoi = new HelperApachePoi();
         model = new DefaultTableModel();
         styleInit();
         dataJTable(jTable1);
         jTable1.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
         jTable1.setFont(new Font(FlatJetBrainsMonoFont.FAMILY, Font.BOLD, 15));
-
     }
 
     // NOTE: vi tri them row table;
@@ -55,7 +56,20 @@ public class MainForm extends javax.swing.JFrame {
     private void dataJTable(JTable table) {
         model = (DefaultTableModel) table.getModel();
         // chi can them gia tri la duoc
-        //model.addRow(addRowProduct("1", "hy", "100"));
+        model.addRow(addRowProduct("63343", "jack", "10000"));
+        model.addRow(addRowProduct("65432", "mike", "15000"));
+        model.addRow(addRowProduct("54321", "sara", "12000"));
+        model.addRow(addRowProduct("98765", "chris", "9000"));
+        model.addRow(addRowProduct("87654", "emily", "11000"));
+        model.addRow(addRowProduct("34567", "ryan", "13000"));
+        model.addRow(addRowProduct("23456", "julia", "8000"));
+        model.addRow(addRowProduct("78901", "max", "9500"));
+        model.addRow(addRowProduct("89012", "emma", "14000"));
+        model.addRow(addRowProduct("123456", "John", "20000"));
+        model.addRow(addRowProduct("654321", "Alice", "18000"));
+        model.addRow(addRowProduct("987654", "Tom", "22000"));
+        model.addRow(addRowProduct("246810", "Sophia", "25000"));
+        model.addRow(addRowProduct("135790", "Oliver", "23000"));
         // ....
     }
 
@@ -91,7 +105,8 @@ public class MainForm extends javax.swing.JFrame {
         jTextField2.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
-        jTextField1.putClientProperty("TextComponent.arc", 999);
+        jButton5.setText("Export");
+        jButton5.setIcon(new FlatSVGIcon("svg/export.svg"));
 
         themeMap = new HashMap<>();
         for (UI.Theme theme : UI.Theme.values()) {
@@ -127,6 +142,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButtonSearch = new javax.swing.JButton();
@@ -220,6 +236,13 @@ public class MainForm extends javax.swing.JFrame {
 
         jLabel1.setText("Product");
 
+        jButton5.setText("jButton5");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -227,7 +250,9 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,6 +260,9 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton5))
         );
 
         jTextField1.setText("jTextField1");
@@ -611,10 +639,8 @@ public class MainForm extends javax.swing.JFrame {
         pro = new Product(jTextField2.getText(), jTextField4.getText(), jTextField5.getText());
         Object[] rowData = {false, jTextField2.getText(), jTextField4.getText(), jTextField5.getText(), null};
         model.addRow(rowData);
-        for(int i = 0 ; i < model.getRowCount() ; i++)
-        {
-            for(int j = 0 ; j <model.getColumnCount() ; j++)
-            {
+        for (int i = 0; i < model.getRowCount(); i++) {
+            for (int j = 0; j < model.getColumnCount(); j++) {
                 arr.add(model.getValueAt(i, j));
             }
         }
@@ -634,7 +660,7 @@ public class MainForm extends javax.swing.JFrame {
 
     JPanel panel;
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
 //        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -642,23 +668,20 @@ public class MainForm extends javax.swing.JFrame {
 //            if ((boolean) model.getValueAt(i, 0)) {
 //                model.removeRow(i);
 //            }
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        for (int i = model.getRowCount() - 1; i >= 0; i--) {
+            if ((boolean) model.getValueAt(i, 0)) {
+                UIManager.put("test", new FontUIResource(new Font("Notification", Font.BOLD, 20)));
+                int n = JOptionPane.showConfirmDialog(panel, "Bạn có muốn xóa dòng " + (i + 1) + " không ??", "Notification", JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
 
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            for (int i = model.getRowCount() - 1; i >= 0; i--) {
-                if ((boolean) model.getValueAt(i, 0)) {
-                    UIManager.put("test", new FontUIResource(new Font("Notification", Font.BOLD, 20)));
-                    int n = JOptionPane.showConfirmDialog(panel, "Bạn có muốn xóa dòng " + (i+1) + " không ??", "Notification", JOptionPane.YES_NO_OPTION);
-                    if (n == JOptionPane.YES_OPTION) {
-
-                        model.removeRow(i);
-
-                    }
+                    model.removeRow(i);
 
                 }
-            }
-    }//GEN-LAST:event_jButton3ActionPerformed
 
-    
+            }
+        }
+    }
 
     public void clear() {
         jTextField2.setText("");
@@ -729,14 +752,18 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         // TODO add your handling code here:
-         
+
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
     private void jButtonXong1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonXong1ActionPerformed
         // TODO add your handling code here:
-        
+
 
     }//GEN-LAST:event_jButtonXong1ActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        apachePoi.fileChooser(jTable1, this);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -783,6 +810,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonSearch;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonSua;
     private javax.swing.JButton jButtonXong;
     private javax.swing.JButton jButtonXong1;
