@@ -82,7 +82,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     private void styleInit() {
-        this.setSize(1440, 800);
+        this.setSize(1534, 800);
         this.setLocationRelativeTo(null);
 
         flatLafTheme = new UI.FlatLafTheme();
