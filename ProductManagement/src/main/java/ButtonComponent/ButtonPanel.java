@@ -15,6 +15,11 @@ public class ButtonPanel extends javax.swing.JPanel {
      */
     public ButtonPanel() {
         initComponents();
+        // new FlatSVGIcon("svg/eye.svg")
+        buttonAction1.setIcon(new FlatSVGIcon("svg/eye.svg", 15, 15));
+        buttonAction2.setIcon(new FlatSVGIcon("svg/pen.svg", 15, 15));
+        buttonAction3.setIcon(new FlatSVGIcon("svg/trash.svg", 15, 15));
+        //     buttonAction1.setAction(new FlatSVGIcon("svg/eye.svg"));
     }
 
     /**
@@ -30,13 +35,15 @@ public class ButtonPanel extends javax.swing.JPanel {
         buttonAction2 = new ButtonComponent.ButtonAction();
         buttonAction3 = new ButtonComponent.ButtonAction();
 
-        buttonAction1.setIcon(new FlatSVGIcon("svg/eye.svg"));
         buttonAction1.setPreferredSize(new java.awt.Dimension(20, 20));
+        buttonAction1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAction1ActionPerformed(evt);
+            }
+        });
 
-        buttonAction2.setIcon(new FlatSVGIcon("svg/pen.svg"));
         buttonAction2.setPreferredSize(new java.awt.Dimension(20, 20));
 
-        buttonAction3.setIcon(new FlatSVGIcon("svg/trash.svg"));
         buttonAction3.setPreferredSize(new java.awt.Dimension(20, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -63,6 +70,10 @@ public class ButtonPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonAction1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAction1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonAction1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

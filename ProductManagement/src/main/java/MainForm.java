@@ -82,16 +82,16 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     private void styleInit() {
+        this.setSize(1440, 800);
+        this.setLocationRelativeTo(null);
 
         flatLafTheme = new UI.FlatLafTheme();
         themeNames = UI.Theme.getAllThemeNames();
-
         FlatSVGIcon.ColorFilter.getInstance()
                 .add(Color.BLACK, null, Color.white)
                 .add(Color.white, null, Color.black);
         initComponents();
-        this.setSize(1440, 800);
-        this.setLocationRelativeTo(null);
+
 
         //   jPanel7.setBackground(Color.decode("#E0E2E7"));
         jTextField1.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Search product...");
@@ -101,10 +101,15 @@ public class MainForm extends javax.swing.JFrame {
         jLabel11.putClientProperty("FlatLaf.styleClass", "h1");
         jLabel11.setIcon(new FlatSVGIcon("svg/product.svg"));
 
+        jTable1.putClientProperty("FlatLaf.styleClass", "h3");
+        jTable1.setAutoCreateRowSorter(true);
+        HelperJTable.setJTableColumnsWidth(jTable1, 825, 5, 25, 25, 25, 15);
+
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
+
         jButton5.setText("Export");
         jButton5.setIcon(new FlatSVGIcon("svg/export.svg"));
 
@@ -537,9 +542,6 @@ public class MainForm extends javax.swing.JFrame {
         });
         jTable1.setRowHeight(50);
         jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(30);
-        }
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -809,8 +811,8 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButtonSearch;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButtonSearch;
     private javax.swing.JButton jButtonSua;
     private javax.swing.JButton jButtonXong;
     private javax.swing.JButton jButtonXong1;
