@@ -10,38 +10,16 @@
 import Helper.*;
 import ButtonComponent.TableActionCellRender;
 import UI.*;
-import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.formdev.flatlaf.*;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Font;
-import java.awt.Insets;
-import java.awt.Rectangle;
-import java.awt.Window;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
-import java.util.HashMap;
-import java.util.Map;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.RowFilter;
-import javax.swing.SwingUtilities;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
+import javax.swing.event.*;
+import javax.swing.table.*;
 
 public class MainForm extends javax.swing.JFrame {
 
@@ -56,15 +34,15 @@ public class MainForm extends javax.swing.JFrame {
     HelperApachePoi apachePoi;
 
     public MainForm() {
-
+        flatLafTheme = new UI.FlatLafTheme();
+        flatLafTheme.setCurrentLookAndFeel(new FlatIntelliJLaf());
+        initComponents();
         ImageIcon image = new ImageIcon(getClass().getClassLoader().getResource("Logo.png"));
         this.setIconImage(image.getImage());
         apachePoi = new HelperApachePoi();
         model = new DefaultTableModel();
         styleInit();
         initEvent();
-        //     jTable1.updateUI();
-
     }
 
     // NOTE: vi tri them row table;
@@ -98,6 +76,7 @@ public class MainForm extends javax.swing.JFrame {
             System.out.println(string);
         }
         // ....
+      //  SwingUtilities.updateComponentTreeUI(jTable1);
     }
 
     /**
@@ -112,12 +91,10 @@ public class MainForm extends javax.swing.JFrame {
         this.setSize(1534, 800);
         this.setLocationRelativeTo(null);
 
-        flatLafTheme = new UI.FlatLafTheme();
         themeNames = UI.Theme.getAllThemeNames();
         FlatSVGIcon.ColorFilter.getInstance()
                 .add(Color.BLACK, null, Color.white)
                 .add(Color.white, null, Color.black);
-        initComponents();
 
         dataJTable(jTable1);
         jTable1.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
@@ -150,16 +127,9 @@ public class MainForm extends javax.swing.JFrame {
         String theme = WrSettings.getProperty("theme");
         if (theme != null) {
             jComboBox2.setSelectedItem(theme);
-            if (themeMap.containsKey(theme)) {
-                flatLafTheme.setCurrentLookAndFeel(themeMap.get(theme));
-            }
-        } else {
-            flatLafTheme.setCurrentLookAndFeel(new FlatIntelliJLaf());
-            SwingUtilities.updateComponentTreeUI(this);
         }
-        //    SwingUtilities.updateComponentTreeUI();
-
     }
+
     private void initEvent() {
         jTextField1.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -756,7 +726,7 @@ public class MainForm extends javax.swing.JFrame {
             flatLafTheme.setCurrentLookAndFeel(themeMap.get(selectedTheme));
         }
         WrSettings.setProperty("theme", selectedTheme);
-        SwingUtilities.updateComponentTreeUI(this);
+        FlatLaf.updateUI();
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     JPanel panel;

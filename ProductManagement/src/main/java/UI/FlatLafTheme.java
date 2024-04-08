@@ -17,7 +17,7 @@ import javax.swing.UIManager;
  */
 public class FlatLafTheme {
 
-    private javax.swing.LookAndFeel currentLookAndFeel;
+    //  private javax.swing.LookAndFeel currentLookAndFeel;
 
     public FlatLafTheme() {
         //.registerCustomDefaultsSource("style");
@@ -42,7 +42,8 @@ public class FlatLafTheme {
     public void setCurrentLookAndFeel(LookAndFeel lookAndFeel) {
         try {
             UIManager.setLookAndFeel(lookAndFeel);
-            currentLookAndFeel = lookAndFeel;
+            //    currentLookAndFeel = lookAndFeel;
+
         } catch (Exception ex) {
             System.err.println("Failed to set Look and Feel: " + ex.getMessage());
         }
