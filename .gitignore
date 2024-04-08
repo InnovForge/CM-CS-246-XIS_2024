@@ -25,3 +25,4 @@ nb-configuration.xml
 !.mvn/wrapper/maven-wrapper.jar
 **/Settings.properties
 ProductManagement/target
+/BaiThucHanh1/target/

@@ -90,6 +90,12 @@ public class Form extends javax.swing.JFrame {
 
         jLabel2.setText("Số Thứ Hai");
 
+        jTextFieldSoThu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldSoThu1ActionPerformed(evt);
+            }
+        });
+
         jButtonCong.setText("Cộng");
         jButtonCong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,10 +205,16 @@ public class Form extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextFieldSoThu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSoThu1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextFieldSoThu1ActionPerformed
+
     private void jButtonCongActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButtonCongActionPerformed
         // TODO add your handling code here:
-        try {
-
+        try {   
+            operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText()), Double.parseDouble(this.jTextFieldSoThu2.getText()));
+            this.jLabelKQMAIN.setText(operation.add()+"");
         } catch (NumberFormatException e) {
             this.jLabelKQMAIN.setText("Nhập dữ liệu sai");
         }
