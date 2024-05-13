@@ -706,6 +706,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if (!jTextField2.getText().isEmpty() && !jTextField4.getText().isEmpty() && !jTextField5.getText().isEmpty()) {
         Product pro;
         pro = new Product(jTextField2.getText(), jTextField4.getText(), jTextField5.getText());
         Object[] rowData = {false, jTextField2.getText(), jTextField4.getText(), jTextField5.getText(), null};
@@ -716,7 +717,10 @@ public class MainForm extends javax.swing.JFrame {
             }
         }
         clear();
-
+        }
+        else {
+        JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin!");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
