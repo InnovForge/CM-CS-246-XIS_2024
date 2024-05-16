@@ -328,21 +328,11 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabelSTTsanpham" min="-2" pref="162" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="STTHangText" min="-2" pref="115" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                          <Component id="jButtonSua" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                                          <Component id="jButtonXong" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="0" pref="87" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="jButtonSua" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                  <Component id="jButtonXong" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="148" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
@@ -373,17 +363,19 @@
                           <Component id="jButton6" min="-2" pref="94" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                          <Component id="jLabelSTTsanpham" min="-2" pref="162" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabelSTTsanpham" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                              <Component id="STTHangText" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                          <Component id="jLabelSTTsanpham" min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButtonSua" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButtonXong" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -605,10 +597,8 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLabelSTTsanpham">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Enter the row number to edit"/>
+                    <Property name="text" type="java.lang.String" value="Click on it to edit product"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="STTHangText">
                 </Component>
                 <Component class="javax.swing.JButton" name="jButtonSua">
                   <Properties>

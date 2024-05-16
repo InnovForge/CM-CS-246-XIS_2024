@@ -26,3 +26,5 @@ nb-configuration.xml
 **/Settings.properties
 ProductManagement/target
 /BaiThucHanh1/target/
+/Calculator/target/
+/ProductManagement/nbproject/

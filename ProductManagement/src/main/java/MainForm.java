@@ -26,7 +26,7 @@ public class MainForm extends javax.swing.JFrame {
     /**
      * Creates new form UI
      */
-    DefaultTableModel model;
+    public DefaultTableModel model;
     FlatLafTheme flatLafTheme;
     String[] themeNames;
     Map<String, javax.swing.LookAndFeel> themeMap;
@@ -233,7 +233,6 @@ public class MainForm extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabelSTTsanpham = new javax.swing.JLabel();
-        STTHangText = new javax.swing.JTextField();
         jButtonSua = new javax.swing.JButton();
         jButtonXong = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -500,7 +499,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabelSTTsanpham.setText("Enter the row number to edit");
+        jLabelSTTsanpham.setText("Click on it to edit product");
 
         jButtonSua.setText("Edit");
         jButtonSua.addActionListener(new java.awt.event.ActionListener() {
@@ -530,27 +529,17 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addComponent(jButtonSua)
+                        .addGap(58, 58, 58)
+                        .addComponent(jButtonXong)
+                        .addGap(0, 148, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabelSTTsanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(STTHangText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jButtonSua)
-                                .addGap(58, 58, 58)
-                                .addComponent(jButtonXong)))
-                        .addGap(0, 87, Short.MAX_VALUE)))
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
@@ -566,15 +555,17 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(143, 143, 143))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jLabelSTTsanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelSTTsanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(STTHangText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
+                .addGap(67, 67, 67)
+                .addComponent(jLabelSTTsanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSua)
                     .addComponent(jButtonXong))
@@ -781,7 +772,6 @@ public class MainForm extends javax.swing.JFrame {
         jTextField2.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
-        STTHangText.setText("");
     }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -792,7 +782,6 @@ public class MainForm extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         jLabelSTTsanpham.setVisible(true);
-        STTHangText.setVisible(true);
         jButtonSua.setVisible(true);
         jButtonXong.setVisible(true);
         jLabel3.setText("CHANGE ID");
@@ -803,27 +792,51 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jButtonSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSuaActionPerformed
         // TODO add your handling code here:
-        int row = Integer.parseInt(STTHangText.getText());
-
-        row -= 1;
-        if(jTextField2.getText().isEmpty() != true)
+//        int row = Integer.parseInt(STTHangText.getText());
+//
+//        row -= 1;
+//        if(jTextField2.getText().isEmpty() != true)
+//        {
+//            String id = jTextField2.getText();
+//            model.setValueAt(id, row, 1);
+//
+//        }
+//        if(jTextField4.getText().isEmpty() != true)
+//        {
+//            String name = jTextField4.getText();
+//            model.setValueAt(name, row, 2);
+//
+//        }
+//        if(jTextField5.getText().isEmpty() != true)
+//        {
+//        String price = jTextField5.getText();
+//        model.setValueAt(price, row, 3);
+//        }
+//        model.setValueAt(null, row, 4);
+        boolean check = false;
+        for (int i = model.getRowCount() - 1; i >= 0; i--) {
+            if ((boolean) model.getValueAt(i, 0)) {
+                if (jTextField2.getText().isEmpty() != true) {
+                    String id = jTextField2.getText();
+                    model.setValueAt(id, i, 1);
+                } 
+                if (jTextField4.getText().isEmpty() != true) {
+                    String name = jTextField4.getText();
+                    model.setValueAt(name, i, 2);
+                } 
+                if (jTextField5.getText().isEmpty() != true) {
+                    String price = jTextField5.getText();
+                    model.setValueAt(price, i, 3);
+                }
+                model.setValueAt(null, i, 4);
+                check = true;
+            }
+        }
+        if(check == false)
         {
-            String id = jTextField2.getText();
-            model.setValueAt(id, row, 1);
+                    JOptionPane.showMessageDialog(this, "Please click on a product to edit!");
 
         }
-        if(jTextField4.getText().isEmpty() != true)
-        {
-            String name = jTextField4.getText();
-            model.setValueAt(name, row, 2);
-
-        }
-        if(jTextField5.getText().isEmpty() != true)
-        {
-        String price = jTextField5.getText();
-        model.setValueAt(price, row, 3);
-        }
-        model.setValueAt(null, row, 4);
         
 
     }//GEN-LAST:event_jButtonSuaActionPerformed
@@ -831,7 +844,6 @@ public class MainForm extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         jLabelSTTsanpham.setVisible(false);
-        STTHangText.setVisible(false);
         jButtonSua.setVisible(false);
         jButtonXong.setVisible(false);
     }//GEN-LAST:event_formWindowOpened
@@ -839,7 +851,6 @@ public class MainForm extends javax.swing.JFrame {
     private void jButtonXongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonXongActionPerformed
         // TODO add your handling code here:
         jLabelSTTsanpham.setVisible(false);
-        STTHangText.setVisible(false);
         jButtonSua.setVisible(false);
         jButtonXong.setVisible(false);
         jLabel3.setText("ID");
@@ -945,7 +956,6 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField STTHangText;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

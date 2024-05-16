@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
  * @author team3
  */
 public class Form extends javax.swing.JFrame {
-
+    
     Operation operation;
 // NOTE: đề xuất cách dùng 
 /*     try {
