@@ -896,11 +896,14 @@ public class MainForm extends javax.swing.JFrame {
                 UIManager.put("test", new FontUIResource(new Font("Notification", Font.BOLD, 20)));
 
               System.out.println(model.getValueAt(i, 3));
-                sum+=Integer.parseInt(model.getValueAt(i, 3).toString());
-                
-            }
+                sum+=Integer.parseInt(model.getValueAt(i, 3).toString());                
+            }        
         }
-         JOptionPane.showMessageDialog(rootPane, "Tổng tiền sản phẩm: "+sum);
+        if(sum>0)
+             JOptionPane.showMessageDialog(rootPane, "Tổng tiền sản phẩm: "+sum);
+        else{
+         JOptionPane.showMessageDialog(this, "Bạn chưa nhập sản phẩm!");
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
