@@ -214,7 +214,7 @@ public class Form extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {   
             operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText()), Double.parseDouble(this.jTextFieldSoThu2.getText()));
-            this.jLabelKQMAIN.setText(operation.add()+"");
+            this.jLabelKQMAIN.setText(operation.formatResult(operation.add())+"");
         } catch (NumberFormatException e) {
             this.jLabelKQMAIN.setText("Nhập dữ liệu sai");
         }
@@ -232,7 +232,7 @@ public class Form extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText()),Double.parseDouble(this.jTextFieldSoThu2.getText()));
-            this.jLabelKQMAIN.setText(operation.minus()+"");
+            this.jLabelKQMAIN.setText(operation.formatResult(operation.minus())+"");
 
         } catch (NumberFormatException e) {
             this.jLabelKQMAIN.setText("Nhập dữ liệu sai");
@@ -245,7 +245,7 @@ public class Form extends javax.swing.JFrame {
         try {
             operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText()),
             Double.parseDouble(this.jTextFieldSoThu2.getText()));
-            this.jLabelKQMAIN.setText(operation.multiply()+"");
+            this.jLabelKQMAIN.setText(operation.formatResult(operation.multiply())+"");
 
         } catch (NumberFormatException e) {
             this.jLabelKQMAIN.setText("Nhập dữ liệu sai");

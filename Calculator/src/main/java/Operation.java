@@ -7,57 +7,60 @@
  *
  * @author harvous
  */
-public class Operation {
+public class Operation<T extends Number> {
 
-    private double a, b;
+    private T a, b;
 
-    public Operation(double a, double b) {
+    public Operation(T a, T b) {
         this.a = a;
         this.b = b;
     }
-    
 
-    public double getA() {
+    public T getA() {
         return a;
     }
 
-    public void setA(double a) {
+    public void setA(T a) {
         this.a = a;
     }
 
-    public double getB() {
+    public T getB() {
         return b;
     }
 
-    public void setB(double b) {
+    public void setB(T b) {
         this.b = b;
     }
 
-    public double add() {
-        return a + b;
+    public Number add() {
+        return a.doubleValue() + b.doubleValue();
     }
 
-    public double minus() {
-        return a - b;
+    public Number minus() {
+        return a.doubleValue() - b.doubleValue();
     }
 
-    public double multiply() {
-        return a * b;
+    public Number multiply() {
+        return a.doubleValue() * b.doubleValue();
     }
 
-    public double divide() {
-//        if (b == 0) {
-//            throw new ArithmeticException("Cannot divide by zero!");
-//        }
-        return a / b;
+    public Number divide() {  
+        return a.doubleValue() / b.doubleValue();
+    }
+    //check double va int
+    public static String formatResult(Number result) {
+        if (result.doubleValue() % 1 == 0) {
+            return String.valueOf(result.intValue());
+        } else {
+            return String.valueOf(result.doubleValue());
+        }
+    }
+
+    public static void main(String[] args) {
+        Operation<Integer> op = new Operation<>(5, 2);
+        System.out.println("Add: " + Operation.formatResult(op.add()));
+        System.out.println("Minus: " + Operation.formatResult(op.minus()));
+        System.out.println("Multiply: " + Operation.formatResult(op.multiply()));
+        System.out.println("Divide: " + Operation.formatResult(op.divide()));
     }
 }
-
-//      double x = 2;
-//        double m = 1.1;
-//        double sum = (x + m);
-//        if (sum % 1 != 0) {
-//            System.out.println(sum);
-//        } else {
-//            System.out.println((int) sum);
-//        }
