@@ -263,9 +263,10 @@ public class Form extends javax.swing.JFrame {
             }
             else{
                 chia=num1/num2;
-                DecimalFormat df = new DecimalFormat("0.000");
-                String formattedNumber = df.format(chia);
-                jLabelKQMAIN.setText(formattedNumber+"");
+//                DecimalFormat df = new DecimalFormat("0.000");
+//                String formattedNumber = df.format(chia);
+//                jLabelKQMAIN.setText(formattedNumber+"");
+                  jLabelKQMAIN.setText(chia+"");
             } 
         } catch (NumberFormatException e) {
             jLabelKQMAIN.setText("NHAP SAI DU LIEU !!");
