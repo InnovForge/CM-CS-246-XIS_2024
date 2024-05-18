@@ -10,7 +10,12 @@
 public class Operation<T extends Number> {
 
     private T a, b;
-
+    
+    public Operation()
+    {
+        
+    }
+    
     public Operation(T a, T b) {
         this.a = a;
         this.b = b;
@@ -51,13 +56,14 @@ public class Operation<T extends Number> {
     public static String formatResult(Number result) {
         if (result.doubleValue() % 1 == 0) {
             return String.valueOf(result.intValue());
-        } else {
+        }
+        else {
             return String.valueOf(result.doubleValue());
         }
     }
 
     public static void main(String[] args) {
-        Operation<Integer> op = new Operation<>(5, 2);
+        Operation<Integer> op = new Operation<>(5, 0);
         System.out.println("Add: " + Operation.formatResult(op.add()));
         System.out.println("Minus: " + Operation.formatResult(op.minus()));
         System.out.println("Multiply: " + Operation.formatResult(op.multiply()));
