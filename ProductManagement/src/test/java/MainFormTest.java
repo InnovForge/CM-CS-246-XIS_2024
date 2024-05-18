@@ -34,7 +34,8 @@ public class MainFormTest {
 
     @Test
     public void fieldTest() {
-        window.textBox("search").click();
+        window.textBox("search").requireEmpty();
+
     }
 
     @After
