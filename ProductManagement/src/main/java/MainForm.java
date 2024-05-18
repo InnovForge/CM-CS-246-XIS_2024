@@ -113,6 +113,7 @@ public class MainForm extends javax.swing.JFrame {
         HelperJTable.setJTableColumnsWidth(jTable1, 825, 5, 25, 25, 25, 15);
 
         jTextField1.setText("");
+        jTextField1.setName("search");
         jTextField2.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
