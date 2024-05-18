@@ -218,7 +218,6 @@ public class MainForm extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButtonSearch = new javax.swing.JButton();
-        jButtonXong1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
@@ -351,13 +350,6 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        jButtonXong1.setText("Done!");
-        jButtonXong1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonXong1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -366,8 +358,6 @@ public class MainForm extends javax.swing.JFrame {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonXong1)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -376,8 +366,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSearch)
-                    .addComponent(jButtonXong1))
+                    .addComponent(jButtonSearch))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -889,11 +878,6 @@ public class MainForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
-    private void jButtonXong1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonXong1ActionPerformed
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_jButtonXong1ActionPerformed
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         apachePoi.fileChooser(jTable1, this);
@@ -966,7 +950,6 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JButton jButtonSua;
     private javax.swing.JButton jButtonXong;
-    private javax.swing.JButton jButtonXong1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
