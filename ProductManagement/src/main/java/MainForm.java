@@ -92,7 +92,7 @@ public class MainForm extends javax.swing.JFrame {
     private void styleInit() {
         this.setSize(1534, 800);
         this.setLocationRelativeTo(null);
-
+        this.setTitle("Product Management");
         themeNames = UI.Theme.getAllThemeNames();
         FlatSVGIcon.ColorFilter.getInstance()
                 .add(Color.BLACK, null, Color.white)

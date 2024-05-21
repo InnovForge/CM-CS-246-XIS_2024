@@ -37,7 +37,7 @@ public class Form extends javax.swing.JFrame {
     public Form() {
         initComponents();
         this.jLabelPHEPCONG.setFont(new Font("Arial", Font.PLAIN, 20));
-        this.setTitle("Calculator Group 3");
+        this.setTitle("Calculator");
 
         this.setLocationRelativeTo(null);
 
