@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.text.DecimalFormat;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt
@@ -57,6 +58,8 @@ public class Form extends javax.swing.JFrame {
         jButtonChia.setForeground(Color.BLACK);
         ImageIcon image = new ImageIcon(getClass().getClassLoader().getResource("logo.png"));
         this.setIconImage(image.getImage());
+
+        jLabel4.setText("About");
     }
 
     /**
@@ -81,6 +84,7 @@ public class Form extends javax.swing.JFrame {
         jButtonTru = new javax.swing.JButton();
         jButtonNhan = new javax.swing.JButton();
         jButtonChia = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,6 +137,13 @@ public class Form extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("jLabel4");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,7 +173,9 @@ public class Form extends javax.swing.JFrame {
                                     .addComponent(jButtonNhapLai)
                                     .addComponent(jButtonChia)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
+                        .addContainerGap()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
                         .addComponent(jLabelPHEPCONG, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
@@ -174,8 +187,13 @@ public class Form extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabelPHEPCONG, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabelPHEPCONG, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,6 +227,11 @@ public class Form extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jTextFieldSoThu1ActionPerformed
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+                 JOptionPane.showMessageDialog(rootPane, "Team 3\n@NGUYEN DINH MINH HAI\n@NGUYEN TUONG HY (LEADER)\n@NGUYEN THANH NHAT\n@LUU DUC THANG\n@TRUONG THANH VY\n-----------\nCMU-CS-246-XIS-2024", "About", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButtonCongActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButtonCongActionPerformed
         // TODO add your handling code here:
@@ -327,6 +350,7 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelKQMAIN;
     private javax.swing.JLabel jLabelPHEPCONG;
     private javax.swing.JTextField jTextFieldSoThu1;

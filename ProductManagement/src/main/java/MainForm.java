@@ -16,6 +16,7 @@ import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.util.regex.PatternSyntaxException;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.event.*;
@@ -43,6 +44,7 @@ public class MainForm extends javax.swing.JFrame {
         model = new DefaultTableModel();
         styleInit();
         initEvent();
+        updateTable();
     }
 
     // NOTE: vi tri them row table;
@@ -62,7 +64,7 @@ public class MainForm extends javax.swing.JFrame {
         model.addRow(addRowProduct("78901", "max", "9500"));
         model.addRow(addRowProduct("89012", "emma", "14000"));
         model.addRow(addRowProduct("123456", "John", "20000"));
-        model.addRow(addRowProduct("654321", "Alice", "18000"));
+        model.addRow(addRowProduct("654321", "alice", "18000"));
         model.addRow(addRowProduct("987654", "Tom", "22000"));
         model.addRow(addRowProduct("246810", "Sophia", "25000"));
         model.addRow(addRowProduct("135790", "Oliver", "23000"));
@@ -71,10 +73,10 @@ public class MainForm extends javax.swing.JFrame {
                 arr.add(model.getValueAt(i, j));
             }
         }
-        System.out.println(model.getRowCount());
-        for (Object string : arr) {
-            System.out.println(string);
-        }
+//        System.out.println(model.getRowCount());
+//        for (Object string : arr) {
+//            System.out.println(string);
+//        }
         // ....
       //  SwingUtilities.updateComponentTreeUI(jTable1);
     }
@@ -120,6 +122,9 @@ public class MainForm extends javax.swing.JFrame {
 
         jButton5.setText("Export");
         jButton5.setIcon(new FlatSVGIcon("svg/export.svg"));
+
+        jLabel9.setText("About");
+        jLabel9.setIcon(new FlatSVGIcon("svg/info.svg"));
 
         themeMap = new HashMap<>();
         for (UI.Theme theme : UI.Theme.values()) {
@@ -187,14 +192,21 @@ public class MainForm extends javax.swing.JFrame {
         final TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
         jTable1.setRowSorter(sorter);
 
-        if (!text.isEmpty()) {
-            jTextField1.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, new FlatSVGIcon("svg/cross.svg"));
-            sorter.setRowFilter(RowFilter.regexFilter(text));
-        } else {
+        if (text.trim().length() == 0) {
+
             jTextField1.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, new FlatSVGIcon("svg/cross.svg").isDisabled());
             sorter.setRowFilter(null);
-        }
+        } else {
+            try {
+                sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+
+            } catch (PatternSyntaxException pse) {
+                System.out.println("Bad regex pattern");
+            }
+
+   }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -240,6 +252,7 @@ public class MainForm extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -589,16 +602,9 @@ public class MainForm extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
-            boolean[] canEdit = new boolean [] {
-                true, true, true, true, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jTable1.setRowHeight(50);
@@ -644,6 +650,13 @@ public class MainForm extends javax.swing.JFrame {
         jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel11.setIconTextGap(50);
 
+        jLabel9.setText("jLabel9");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -652,13 +665,19 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(651, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 566, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -891,7 +910,7 @@ public class MainForm extends javax.swing.JFrame {
             if ((boolean) model.getValueAt(i, 0)) {
                 UIManager.put("test", new FontUIResource(new Font("Notification", Font.BOLD, 20)));
 
-              System.out.println(model.getValueAt(i, 3));
+           //   System.out.println(model.getValueAt(i, 3));
                 sum+=Integer.parseInt(model.getValueAt(i, 3).toString());                
             }        
         }
@@ -901,6 +920,11 @@ public class MainForm extends javax.swing.JFrame {
          JOptionPane.showMessageDialog(this, "Bạn chưa nhập sản phẩm!");
         }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+         JOptionPane.showMessageDialog(rootPane, "Team 3\n@NGUYEN DINH MINH HAI\n@NGUYEN TUONG HY (LEADER)\n@NGUYEN THANH NHAT\n@LUU DUC THANG\n@TRUONG THANH VY\n-----------\nCMU-CS-246-XIS-2024", "About", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jLabel9MouseClicked
 
     /**
      * @param args the command line arguments
@@ -960,6 +984,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelSTTsanpham;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
