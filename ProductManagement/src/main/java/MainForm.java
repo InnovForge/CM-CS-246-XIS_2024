@@ -21,6 +21,8 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.event.*;
 import javax.swing.table.*;
+import org.apache.log4j.BasicConfigurator;
+import java.util.List;
 
 public class MainForm extends javax.swing.JFrame {
 
@@ -35,6 +37,7 @@ public class MainForm extends javax.swing.JFrame {
     HelperApachePoi apachePoi;
 
     public MainForm() {
+        BasicConfigurator.configure();
         flatLafTheme = new UI.FlatLafTheme();
         flatLafTheme.setCurrentLookAndFeel(new FlatIntelliJLaf());
         initComponents();
@@ -83,8 +86,12 @@ public class MainForm extends javax.swing.JFrame {
 
     /**
      * **************************END******************************************
+     * @param id
+     * @param name
+     * @param price
+     * @return
      */
-    private Object[] addRowProduct(String id, String name, String price) {
+    public Object[] addRowProduct(String id, String name, String price) {
         Product product = new Product(id, name, price);
         return new Object[]{false, product.getProductId(), product.getProductName(), product.getProductPrice()};
     }
@@ -122,6 +129,9 @@ public class MainForm extends javax.swing.JFrame {
 
         jButton5.setText("Export");
         jButton5.setIcon(new FlatSVGIcon("svg/export.svg"));
+
+        jButton7.setText("Import");
+        jButton7.setIcon(new FlatSVGIcon("svg/import.svg"));
 
         jLabel9.setText("About");
         jLabel9.setIcon(new FlatSVGIcon("svg/info.svg"));
@@ -227,6 +237,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButtonSearch = new javax.swing.JButton();
@@ -327,6 +338,13 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        jButton7.setText("jButton7");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -335,6 +353,8 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5)
                 .addGap(32, 32, 32))
         );
@@ -346,7 +366,9 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton5))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton7)))
         );
 
         jTextField1.setText("jTextField1");
@@ -712,7 +734,7 @@ public class MainForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 769, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
         );
 
         pack();
@@ -900,6 +922,7 @@ public class MainForm extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         apachePoi.fileChooser(jTable1, this);
+       
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -925,6 +948,16 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
          JOptionPane.showMessageDialog(rootPane, "Team 3\n@NGUYEN DINH MINH HAI\n@NGUYEN TUONG HY (LEADER)\n@NGUYEN THANH NHAT\n@LUU DUC THANG\n@TRUONG THANH VY\n-----------\nCMU-CS-246-XIS-2024", "About", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        apachePoi.fileGetter(this);
+           
+        List<Object[]> dataFileRead = apachePoi.getDataReadFileExcel();
+        for (Object[] array : dataFileRead) {
+            model.addRow(array);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -971,6 +1004,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JButton jButtonSua;
     private javax.swing.JButton jButtonXong;

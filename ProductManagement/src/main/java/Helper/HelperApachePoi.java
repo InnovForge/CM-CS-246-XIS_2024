@@ -6,8 +6,12 @@ package Helper;
 
 import java.awt.Component;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -17,10 +21,17 @@ import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.TableModel;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.message.Message;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
@@ -28,6 +39,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author harvous
  */
 public class HelperApachePoi {
+
+    private static List<Object[]> data = new ArrayList<>();
 
     public HelperApachePoi() {
     }
@@ -58,6 +71,123 @@ public class HelperApachePoi {
             }
             this.exportExcel(jtable, fileToSave, fileChooser.getFileFilter().getDescription());
         }
+    }
+    public void fileGetter(Component parentComponent) {
+        JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        FileNameExtensionFilter xls = new FileNameExtensionFilter("Excel 97-2003 Workbook *.xls)", "xls");
+        FileNameExtensionFilter xlsx = new FileNameExtensionFilter("Excel Workbook *.xlsx)", "xlsx");
+        fileChooser.setFileFilter(xls);
+        //fileChooser.
+        fileChooser.setFileFilter(xlsx);
+        fileChooser.addChoosableFileFilter(xlsx);
+
+        int userSelection = fileChooser.showOpenDialog(parentComponent);
+        if (userSelection == JFileChooser.OPEN_DIALOG) {
+            File fileRead = fileChooser.getSelectedFile();
+            readExcel(fileRead);
+        } else {
+            return;
+        }
+    }
+
+    public void readExcel(File fs) {
+
+        try {
+            data.clear();
+            FileInputStream file = new FileInputStream(fs);
+            XSSFWorkbook xssfWorkbook = null;
+            HSSFWorkbook hssfWorkbook = null;
+            System.out.println(this.getFileExtension(fs));
+            if (this.getFileExtension(fs).equals(".xlsx")) {
+                try {
+                xssfWorkbook = new XSSFWorkbook(file);
+                XSSFSheet sheet = xssfWorkbook.getSheetAt(0);
+                // Get all rows
+                Iterator<Row> iterator = sheet.iterator();
+                while (iterator.hasNext()) {
+//                    Row nextRow = iterator.next();
+//                    if (nextRow.getRowNum() == 0) {
+//                        continue;
+//                    }
+
+                    Row row = iterator.next();
+                    String id = null;
+                    String name = null;
+                    String price = null;
+                    for (int i = 0; i < row.getPhysicalNumberOfCells(); i++) {
+                        Cell cell = row.getCell(i);
+
+                        if (cell == null || cell.toString().isEmpty()) {
+                            continue;
+                        }
+                        //print the cell value
+                        // System.out.println(i + " " + cell);
+                        if (cell.getCellType() == CellType.STRING && i == 0) {
+                            id = cell.getStringCellValue();
+                        }
+                        if (cell.getCellType() == CellType.STRING && i == 1) {
+                            name = cell.getStringCellValue();
+                        }
+                        if (cell.getCellType() == CellType.STRING && i == 2) {
+                            price = cell.getStringCellValue();
+                        }
+                    }
+                        data.add(new Object[]{false, id, name, price});
+                    }
+                } catch (Exception e) {
+                }
+
+            } else {
+                try {
+                    hssfWorkbook = new HSSFWorkbook(file);
+                    HSSFSheet sheet = hssfWorkbook.getSheetAt(0);
+                    // Get all rows
+                    Iterator<Row> iterator = sheet.iterator();
+                    while (iterator.hasNext()) {
+                        Row nextRow = iterator.next();
+                        if (nextRow.getRowNum() == 0) {
+                            continue;
+                        }
+                        Row row = iterator.next();
+                        String id = null;
+                        String name = null;
+                        String price = null;
+                        for (int i = 0; i < row.getPhysicalNumberOfCells(); i++) {
+                            Cell cell = row.getCell(i);
+                            //print the cell value
+                            // System.out.println(i + " " + cell);
+                            if (cell.getCellType() == CellType.STRING && i == 0) {
+                                id = cell.getStringCellValue();
+                            }
+                            if (cell.getCellType() == CellType.STRING && i == 1) {
+                                name = cell.getStringCellValue();
+                            }
+                            if (cell.getCellType() == CellType.STRING && i == 2) {
+                                price = cell.getStringCellValue();
+                            }
+                        }
+                        data.add(new Object[]{false, id, name, price});
+                    }
+                } catch (Exception e) {
+                }
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    public List<Object[]> getDataReadFileExcel() {
+        return data;
+    }
+    private String getFileExtension(File file) {
+        String name = file.getName();
+        int lastIndexOf = name.lastIndexOf(".");
+        if (lastIndexOf == -1) {
+            return ""; // empty extension
+        }
+        return name.substring(lastIndexOf);
     }
 
     public void exportExcel(JTable table, File file, String fileChooser) {
