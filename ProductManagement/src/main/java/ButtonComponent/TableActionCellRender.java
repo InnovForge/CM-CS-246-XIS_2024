@@ -17,7 +17,7 @@ public class TableActionCellRender extends DefaultTableCellRenderer {
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component com = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        ButtonPanel action = new ButtonPanel();
+        PanelAction action = new PanelAction();
         if (!isSelected == false) {
             action.setBackground(com.getBackground());
         }

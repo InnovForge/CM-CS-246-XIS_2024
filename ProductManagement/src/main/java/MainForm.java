@@ -7,6 +7,8 @@
  *
  * @author harvous
  */
+import ButtonComponent.ButtonActionEvent;
+import ButtonComponent.TableActionCellEditor;
 import Helper.*;
 import ButtonComponent.TableActionCellRender;
 import UI.*;
@@ -106,8 +108,11 @@ public class MainForm extends javax.swing.JFrame {
                 .add(Color.white, null, Color.black);
 
         dataJTable(jTable1);
-        jTable1.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
         jTable1.setFont(new Font(FlatJetBrainsMonoFont.FAMILY, Font.BOLD, 15));
+        jTable1.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
+        jTable1.putClientProperty("FlatLaf.styleClass", "h3");
+        jTable1.setAutoCreateRowSorter(true);
+        HelperJTable.setJTableColumnsWidth(jTable1, 825, 5, 25, 25, 25, 15);
 
         //   jPanel7.setBackground(Color.decode("#E0E2E7"));
         jTextField1.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Search product...");
@@ -117,9 +122,6 @@ public class MainForm extends javax.swing.JFrame {
         jLabel11.putClientProperty("FlatLaf.styleClass", "h1");
         jLabel11.setIcon(new FlatSVGIcon("svg/product.svg"));
 
-        jTable1.putClientProperty("FlatLaf.styleClass", "h3");
-        jTable1.setAutoCreateRowSorter(true);
-        HelperJTable.setJTableColumnsWidth(jTable1, 825, 5, 25, 25, 25, 15);
 
         jTextField1.setText("");
         jTextField1.setName("search");
@@ -147,6 +149,27 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     private void initEvent() {
+        ButtonActionEvent eventAcion = new ButtonActionEvent() {
+            @Override
+            public void onEdit(int row) {
+                System.out.println("Edit: " + row);
+            }
+
+            @Override
+            public void onDelete(int row) {
+                if (jTable1.isEditing()) {
+                    jTable1.getCellEditor().stopCellEditing();
+                }
+                model.removeRow(row);
+            }
+
+            @Override
+            public void onView(int row) {
+                System.out.println("View" + row);
+            }
+        };
+        jTable1.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(eventAcion));
+
         jTextField1.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -162,7 +185,6 @@ public class MainForm extends javax.swing.JFrame {
                 updateTable();
             }
         });
-
         jTextField1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -171,7 +193,6 @@ public class MainForm extends javax.swing.JFrame {
                 }
             }
         });
-
         jTextField1.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
@@ -624,9 +645,16 @@ public class MainForm extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, false, true, true, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jTable1.setRowHeight(50);
@@ -734,7 +762,7 @@ public class MainForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 769, Short.MAX_VALUE)
         );
 
         pack();
@@ -932,7 +960,6 @@ public class MainForm extends javax.swing.JFrame {
         for (int i = model.getRowCount() - 1; i >= 0; i--) {
             if ((boolean) model.getValueAt(i, 0)) {
                 UIManager.put("test", new FontUIResource(new Font("Notification", Font.BOLD, 20)));
-
            //   System.out.println(model.getValueAt(i, 3));
                 sum+=Integer.parseInt(model.getValueAt(i, 3).toString());                
             }        

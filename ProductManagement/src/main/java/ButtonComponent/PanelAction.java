@@ -4,16 +4,19 @@
  */
 package ButtonComponent;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Action;
 /**
  *
  * @author harvous
  */
-public class ButtonPanel extends javax.swing.JPanel {
+public class PanelAction extends javax.swing.JPanel {
 
     /**
      * Creates new form ButtonPanel
      */
-    public ButtonPanel() {
+    public PanelAction() {
         initComponents();
         // new FlatSVGIcon("svg/eye.svg")
         buttonAction1.setIcon(new FlatSVGIcon("svg/eye.svg", 15, 15));
@@ -22,6 +25,23 @@ public class ButtonPanel extends javax.swing.JPanel {
         //     buttonAction1.setAction(new FlatSVGIcon("svg/eye.svg"));
     }
 
+    public void initEvent(ButtonActionEvent event, int row) {
+        buttonAction1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                event.onView(row);
+            }
+        });
+        buttonAction2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                event.onEdit(row);
+            }
+        });
+        buttonAction3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                event.onDelete(row);
+            }
+        });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
