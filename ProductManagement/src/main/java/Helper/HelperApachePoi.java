@@ -8,26 +8,20 @@ import java.awt.Component;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.TableModel;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.logging.log4j.message.Message;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -105,11 +99,10 @@ public class HelperApachePoi {
                 // Get all rows
                 Iterator<Row> iterator = sheet.iterator();
                     while (iterator.hasNext()) {
-                        Row row = iterator.next(); // Đọc dòng tiếp theo
+                        Row row = iterator.next();
                         if (row.getRowNum() == 0) {
                             continue;
                         }
-
                         String id = null;
                         String name = null;
                         String price = null;
@@ -118,11 +111,8 @@ public class HelperApachePoi {
 
                             Cell cell = row.getCell(i);
                             if (cell == null) {
-                                continue; // Bỏ qua các ô trống
+                                continue;
                             }
-
-                            //print the cell value
-                            // System.out.println(i + " " + cell);
                             if (cell.getCellType() == CellType.STRING && i == 0) {
                                 id = cell.getStringCellValue();
                             }
@@ -145,9 +135,8 @@ public class HelperApachePoi {
 
                     // Get all rows
                     Iterator<Row> iterator = sheet.iterator();
-                    int ccount = 0;
                     while (iterator.hasNext()) {
-                        Row row = iterator.next(); // Đọc dòng tiếp theo
+                        Row row = iterator.next();
                         if (row.getRowNum() == 0) {
                             continue;
                         }
@@ -162,9 +151,6 @@ public class HelperApachePoi {
                             if (cell == null) {
                                 continue; // Bỏ qua các ô trống
                             }
-                            ccount++;
-                            //print the cell value
-                            // System.out.println(i + " " + cell);
                             if (cell.getCellType() == CellType.STRING && i == 0) {
                                 id = cell.getStringCellValue();
                             }
@@ -177,7 +163,6 @@ public class HelperApachePoi {
                         }
                         data.add(new Object[]{false, id, name, price});
                     }
-                    System.out.println("chao" + ccount);
                 } catch (Exception e) {
                 }
             }
