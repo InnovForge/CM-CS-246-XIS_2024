@@ -104,56 +104,23 @@ public class HelperApachePoi {
                 XSSFSheet sheet = xssfWorkbook.getSheetAt(0);
                 // Get all rows
                 Iterator<Row> iterator = sheet.iterator();
-                while (iterator.hasNext()) {
-//                    Row nextRow = iterator.next();
-//                    if (nextRow.getRowNum() == 0) {
-//                        continue;
-//                    }
-
-                    Row row = iterator.next();
-                    String id = null;
-                    String name = null;
-                    String price = null;
-                    for (int i = 0; i < row.getPhysicalNumberOfCells(); i++) {
-                        Cell cell = row.getCell(i);
-
-                        if (cell == null || cell.toString().isEmpty()) {
-                            continue;
-                        }
-                        //print the cell value
-                        // System.out.println(i + " " + cell);
-                        if (cell.getCellType() == CellType.STRING && i == 0) {
-                            id = cell.getStringCellValue();
-                        }
-                        if (cell.getCellType() == CellType.STRING && i == 1) {
-                            name = cell.getStringCellValue();
-                        }
-                        if (cell.getCellType() == CellType.STRING && i == 2) {
-                            price = cell.getStringCellValue();
-                        }
-                    }
-                        data.add(new Object[]{false, id, name, price});
-                    }
-                } catch (Exception e) {
-                }
-
-            } else {
-                try {
-                    hssfWorkbook = new HSSFWorkbook(file);
-                    HSSFSheet sheet = hssfWorkbook.getSheetAt(0);
-                    // Get all rows
-                    Iterator<Row> iterator = sheet.iterator();
                     while (iterator.hasNext()) {
-                        Row nextRow = iterator.next();
-                        if (nextRow.getRowNum() == 0) {
+                        Row row = iterator.next(); // Đọc dòng tiếp theo
+                        if (row.getRowNum() == 0) {
                             continue;
                         }
-                        Row row = iterator.next();
+
                         String id = null;
                         String name = null;
                         String price = null;
+
                         for (int i = 0; i < row.getPhysicalNumberOfCells(); i++) {
+
                             Cell cell = row.getCell(i);
+                            if (cell == null) {
+                                continue; // Bỏ qua các ô trống
+                            }
+
                             //print the cell value
                             // System.out.println(i + " " + cell);
                             if (cell.getCellType() == CellType.STRING && i == 0) {
@@ -170,6 +137,49 @@ public class HelperApachePoi {
                     }
                 } catch (Exception e) {
                 }
+
+            } else {
+                try {
+                    hssfWorkbook = new HSSFWorkbook(file);
+                    HSSFSheet sheet = hssfWorkbook.getSheetAt(0);
+
+                    // Get all rows
+                    Iterator<Row> iterator = sheet.iterator();
+                    int ccount = 0;
+                    while (iterator.hasNext()) {
+                        Row row = iterator.next(); // Đọc dòng tiếp theo
+                        if (row.getRowNum() == 0) {
+                            continue;
+                        }
+
+                        String id = null;
+                        String name = null;
+                        String price = null;
+
+                        for (int i = 0; i < row.getPhysicalNumberOfCells(); i++) {
+
+                            Cell cell = row.getCell(i);
+                            if (cell == null) {
+                                continue; // Bỏ qua các ô trống
+                            }
+                            ccount++;
+                            //print the cell value
+                            // System.out.println(i + " " + cell);
+                            if (cell.getCellType() == CellType.STRING && i == 0) {
+                                id = cell.getStringCellValue();
+                            }
+                            if (cell.getCellType() == CellType.STRING && i == 1) {
+                                name = cell.getStringCellValue();
+                            }
+                            if (cell.getCellType() == CellType.STRING && i == 2) {
+                                price = cell.getStringCellValue();
+                            }
+                        }
+                        data.add(new Object[]{false, id, name, price});
+                    }
+                    System.out.println("chao" + ccount);
+                } catch (Exception e) {
+                }
             }
 
 
@@ -179,6 +189,7 @@ public class HelperApachePoi {
 
     }
     public List<Object[]> getDataReadFileExcel() {
+
         return data;
     }
     private String getFileExtension(File file) {
