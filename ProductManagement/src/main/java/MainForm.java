@@ -145,9 +145,10 @@ public class MainForm extends javax.swing.JFrame {
                 if (jTable1.isEditing()) {
                     jTable1.getCellEditor().stopCellEditing();
                 }
-
+                // Map view row index to model row index
+                int modelRow = jTable1.convertRowIndexToModel(row);
                 int idColumnIndex = 1;
-                Object idObject = model.getValueAt(row, idColumnIndex);
+                Object idObject = model.getValueAt(modelRow, idColumnIndex);
                 int id = Integer.parseInt(idObject.toString());
                 System.out.println(id);
                 db.deleteRecordById("products", id);
