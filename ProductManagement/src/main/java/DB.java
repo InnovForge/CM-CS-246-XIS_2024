@@ -63,7 +63,7 @@ public class DB {
     }
 
     public List<Object[]> queryData(String query) {
-        String sql = "select * from " + query;
+        String sql = "select * from " + query + " ORDER by create_at DESC";
         try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
             List<Object[]> data = new ArrayList<>();
             while (resultSet.next()) {

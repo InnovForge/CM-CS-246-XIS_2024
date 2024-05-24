@@ -53,30 +53,18 @@ public class MainForm extends javax.swing.JFrame {
         model = new DefaultTableModel();
         styleInit();
         initEvent();
-        dataJTable(jTable1);
+        updateTable(jTable1);
     }
 
     // NOTE: vi tri them row table;
     /**
      * **************************BEGIN*********************************************
      */
-    private void dataJTable(JTable table) {
+    private void updateTable(JTable table) {
+
         model = (DefaultTableModel) table.getModel();
-        // chi can them gia tri la duoc
-//        model.addRow(addRowProduct("63343", "jack", "10000"));
-//        model.addRow(addRowProduct("65432", "mike", "15000"));
-//        model.addRow(addRowProduct("54321", "sara", "12000"));
-//        model.addRow(addRowProduct("98765", "chris", "9000"));
-//        model.addRow(addRowProduct("87654", "emily", "11000"));
-//        model.addRow(addRowProduct("34567", "ryan", "13000"));
-//        model.addRow(addRowProduct("23456", "julia", "8000"));
-//        model.addRow(addRowProduct("78901", "max", "9500"));
-//        model.addRow(addRowProduct("89012", "emma", "14000"));
-//        model.addRow(addRowProduct("123456", "John", "20000"));
-//        model.addRow(addRowProduct("654321", "alice", "18000"));
-//        model.addRow(addRowProduct("987654", "Tom", "22000"));
-//        model.addRow(addRowProduct("246810", "Sophia", "25000"));
-//        model.addRow(addRowProduct("135790", "Oliver", "23000"));
+        model.setRowCount(0);
+//        model.addRow(new Object[]{false, 5, "hy", 1999});
         List<Object[]> data = db.queryData("products");
         for (Object[] array : data) {
             model.addRow(array);
@@ -768,16 +756,16 @@ public class MainForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (!jTextField2.getText().isEmpty() && !jTextField4.getText().isEmpty() && !jTextField5.getText().isEmpty()) {
-        Product pro;
-        pro = new Product(jTextField2.getText(), jTextField4.getText(), jTextField5.getText());
-        Object[] rowData = {false, jTextField2.getText(), jTextField4.getText(), jTextField5.getText(), null};
-        model.addRow(rowData);
-        for (int i = 0; i < model.getRowCount(); i++) {
-            for (int j = 0; j < model.getColumnCount(); j++) {
-                arr.add(model.getValueAt(i, j));
-            }
-        }
-        db.createProduct(jTextField4.getText(), BigDecimal.ONE);
+//        Product pro;
+//        pro = new Product(jTextField2.getText(), jTextField4.getText(), jTextField5.getText());
+//        Object[] rowData = {false, jTextField2.getText(), jTextField4.getText(), jTextField5.getText(), null};
+//        model.addRow(rowData);
+//        for (int i = 0; i < model.getRowCount(); i++) {
+//            for (int j = 0; j < model.getColumnCount(); j++) {
+//                arr.add(model.getValueAt(i, j));
+//            }
+//        }
+            db.createProduct(jTextField4.getText(), new BigDecimal(jTextField5.getText())); updateTable(jTable1);
         clear();
         }
         else {
