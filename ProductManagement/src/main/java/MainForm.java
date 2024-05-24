@@ -1007,6 +1007,7 @@ public class MainForm extends javax.swing.JFrame {
                     UserLogin p = new UserLogin();
                     p.setTitle(this.getTitle());
                     p.setVisible(true);
+                    this.setVisible(false);
                 }
     }//GEN-LAST:event_jButton8ActionPerformed
 
