@@ -17,6 +17,7 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
 import java.awt.*;
 import java.awt.event.*;
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.*;
@@ -37,9 +38,12 @@ public class MainForm extends javax.swing.JFrame {
     Map<String, javax.swing.LookAndFeel> themeMap;
     ArrayList<Object> arr = new ArrayList<>();
     HelperApachePoi apachePoi;
+    DB db;
 
     public MainForm() {
+        db = new DB();
         BasicConfigurator.configure();
+
         flatLafTheme = new UI.FlatLafTheme();
         flatLafTheme.setCurrentLookAndFeel(new FlatIntelliJLaf());
         initComponents();
@@ -49,7 +53,7 @@ public class MainForm extends javax.swing.JFrame {
         model = new DefaultTableModel();
         styleInit();
         initEvent();
-        updateTable();
+        dataJTable(jTable1);
     }
 
     // NOTE: vi tri them row table;
@@ -59,31 +63,25 @@ public class MainForm extends javax.swing.JFrame {
     private void dataJTable(JTable table) {
         model = (DefaultTableModel) table.getModel();
         // chi can them gia tri la duoc
-        model.addRow(addRowProduct("63343", "jack", "10000"));
-        model.addRow(addRowProduct("65432", "mike", "15000"));
-        model.addRow(addRowProduct("54321", "sara", "12000"));
-        model.addRow(addRowProduct("98765", "chris", "9000"));
-        model.addRow(addRowProduct("87654", "emily", "11000"));
-        model.addRow(addRowProduct("34567", "ryan", "13000"));
-        model.addRow(addRowProduct("23456", "julia", "8000"));
-        model.addRow(addRowProduct("78901", "max", "9500"));
-        model.addRow(addRowProduct("89012", "emma", "14000"));
-        model.addRow(addRowProduct("123456", "John", "20000"));
-        model.addRow(addRowProduct("654321", "alice", "18000"));
-        model.addRow(addRowProduct("987654", "Tom", "22000"));
-        model.addRow(addRowProduct("246810", "Sophia", "25000"));
-        model.addRow(addRowProduct("135790", "Oliver", "23000"));
-        for (int i = 0; i < model.getRowCount(); i++) {
-            for (int j = 0; j < model.getColumnCount(); j++) {
-                arr.add(model.getValueAt(i, j));
-            }
+//        model.addRow(addRowProduct("63343", "jack", "10000"));
+//        model.addRow(addRowProduct("65432", "mike", "15000"));
+//        model.addRow(addRowProduct("54321", "sara", "12000"));
+//        model.addRow(addRowProduct("98765", "chris", "9000"));
+//        model.addRow(addRowProduct("87654", "emily", "11000"));
+//        model.addRow(addRowProduct("34567", "ryan", "13000"));
+//        model.addRow(addRowProduct("23456", "julia", "8000"));
+//        model.addRow(addRowProduct("78901", "max", "9500"));
+//        model.addRow(addRowProduct("89012", "emma", "14000"));
+//        model.addRow(addRowProduct("123456", "John", "20000"));
+//        model.addRow(addRowProduct("654321", "alice", "18000"));
+//        model.addRow(addRowProduct("987654", "Tom", "22000"));
+//        model.addRow(addRowProduct("246810", "Sophia", "25000"));
+//        model.addRow(addRowProduct("135790", "Oliver", "23000"));
+        List<Object[]> data = db.queryData("products");
+        for (Object[] array : data) {
+            model.addRow(array);
         }
-//        System.out.println(model.getRowCount());
-//        for (Object string : arr) {
-//            System.out.println(string);
-//        }
-        // ....
-      //  SwingUtilities.updateComponentTreeUI(jTable1);
+
     }
 
     /**
@@ -107,7 +105,6 @@ public class MainForm extends javax.swing.JFrame {
                 .add(Color.BLACK, null, Color.white)
                 .add(Color.white, null, Color.black);
 
-        dataJTable(jTable1);
         jTable1.setFont(new Font(FlatJetBrainsMonoFont.FAMILY, Font.BOLD, 15));
         jTable1.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
         jTable1.putClientProperty("FlatLaf.styleClass", "h3");
@@ -780,6 +777,7 @@ public class MainForm extends javax.swing.JFrame {
                 arr.add(model.getValueAt(i, j));
             }
         }
+        db.createProduct(jTextField4.getText(), BigDecimal.ONE);
         clear();
         }
         else {
