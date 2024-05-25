@@ -277,6 +277,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        LogoutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -699,6 +700,13 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        LogoutButton.setText("Log out");
+        LogoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -710,6 +718,8 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LogoutButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -717,8 +727,10 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 566, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 530, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LogoutButton))
                 .addGap(26, 26, 26))
         );
 
@@ -979,6 +991,18 @@ public class MainForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
+        // TODO add your handling code here:
+        int a = JOptionPane.showConfirmDialog(this, "Do yout want logout?");
+                if (a == JOptionPane.YES_OPTION) {
+                    dispose();
+                    UserLogin obj = new UserLogin();
+                    obj.setTitle("Admin-login");
+                    obj.setVisible(true);
+                    this.setVisible(false);
+                }
+    }//GEN-LAST:event_LogoutButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1018,6 +1042,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton LogoutButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

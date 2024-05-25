@@ -23,7 +23,7 @@ public class UserLogin extends javax.swing.JFrame {
     DB db = new DB();
     public UserLogin() {
         initComponents();
-        this.setTitle("User-login");
+        this.setTitle("Admin-Login");
         this.setLocationRelativeTo(null);
     }
 
@@ -42,7 +42,6 @@ public class UserLogin extends javax.swing.JFrame {
         UserNameInput = new javax.swing.JTextField();
         PasswordInput = new javax.swing.JTextField();
         LoginButton = new javax.swing.JButton();
-        SignUpButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,8 +57,6 @@ public class UserLogin extends javax.swing.JFrame {
                 LoginButtonActionPerformed(evt);
             }
         });
-
-        SignUpButton.setText("SignUp");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,10 +82,6 @@ public class UserLogin extends javax.swing.JFrame {
                         .addGap(156, 156, 156)
                         .addComponent(LoginButton)))
                 .addContainerGap(128, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(SignUpButton)
-                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,9 +98,7 @@ public class UserLogin extends javax.swing.JFrame {
                     .addComponent(PasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(LoginButton)
-                .addGap(18, 18, 18)
-                .addComponent(SignUpButton)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
@@ -180,7 +171,6 @@ public class UserLogin extends javax.swing.JFrame {
     private javax.swing.JButton LoginButton;
     private javax.swing.JTextField PasswordInput;
     private javax.swing.JLabel Passwordlable;
-    private javax.swing.JButton SignUpButton;
     private javax.swing.JTextField UserNameInput;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel usernameLabel;
