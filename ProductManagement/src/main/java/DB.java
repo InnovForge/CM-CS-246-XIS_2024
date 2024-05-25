@@ -46,19 +46,7 @@ public class DB {
             e.printStackTrace(System.err);
         }
     }
-    public void addUser(String name,String pass)
-    {
-        String sql = "INSERT INTO users(name, password) VALUES(?,?)";
-        try {
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, name);
-            ps.setString(2, pass);
-            ps.execute();
-            System.out.println("added");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
     public void createProduct(String name, BigDecimal price) {
         String sql = "INSERT INTO products (name, price, create_at) VALUES (?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {

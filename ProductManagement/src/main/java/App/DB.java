@@ -29,8 +29,20 @@ public class DB {
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:sqlite.db");
-
+            createSQLNhat();
         } catch (Exception e) {
+            e.printStackTrace(System.err);
+        }
+    }
+    public Connection getConnection() {
+        return this.connection;
+    }
+
+    public final void createSQLNhat() {
+        try (Statement statement = connection.createStatement()) {
+            statement.executeUpdate("create table if not exists products (id integer primary key autoincrement, name text, price real, create_at datetime)");
+            statement.executeUpdate("create table if not exists users(name text not null,password not null)");
+        } catch (SQLException e) {
             e.printStackTrace(System.err);
         }
     }
@@ -38,7 +50,7 @@ public class DB {
     public final void createSQL() {
         try (Statement statement = connection.createStatement()) {
 
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS users ("
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS accounts ("
                     + "user_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "username TEXT NOT NULL UNIQUE, "
                     + "password TEXT NOT NULL, "
@@ -64,8 +76,32 @@ public class DB {
         }
     }
 
+    public void addUser(String name, String pass) {
+        String sql = "INSERT INTO users(name, password) VALUES(?,?)";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, pass);
+            ps.execute();
+            System.out.println("added");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void createUser(String username, String password) {
         String sql = "INSERT INTO users (username, password) VALUES (?,?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }
+    }
+
+    public void createAccount(String username, String password) {
+        String sql = "INSERT INTO accounts (username, password) VALUES (?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
@@ -110,7 +146,7 @@ public class DB {
 
     }
     public String getPasswordByUserName(String username) {
-        String sql = "SELECT password FROM users WHERE username = ?";
+        String sql = "SELECT password FROM accounts WHERE username = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, username);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -135,7 +171,6 @@ public class DB {
             String formattedDateTime = now.format(formatter);
 
             preparedStatement.setString(3, formattedDateTime);
-
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace(System.err);

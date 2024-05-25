@@ -1,9 +1,12 @@
+package App;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
 
+import App.MainForm;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -118,7 +121,7 @@ public class UserLogin extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery();
              if (rs.next()) {
                         dispose();
-                        MainForm m = new MainForm();
+                 MainForm m = new MainForm();
                         m.setVisible(true);
                         JOptionPane.showMessageDialog(this, "Successful login");
                     } else {
