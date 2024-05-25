@@ -28,16 +28,34 @@ public class DB {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:sqlite.db");
             createSQL(); // Gọi phương thức để tạo bảng và thêm dữ liệu mẫu
+        
         } catch (Exception e) {
             e.printStackTrace(System.err);
         }
     }
-
+    
+    public Connection getConnection()
+    {
+        return this.connection;
+    }
     public final void createSQL() {
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate("create table if not exists products (id integer primary key autoincrement, name text, price real, create_at datetime)");
         } catch (SQLException e) {
             e.printStackTrace(System.err);
+        }
+    }
+    public void addUser(String name,String pass)
+    {
+        String sql = "INSERT INTO users(name, password) VALUES(?,?)";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, pass);
+            ps.execute();
+            System.out.println("added");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
     public void createProduct(String name, BigDecimal price) {
@@ -93,5 +111,7 @@ public class DB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    public static void main(String[] args) {
     }
 }
