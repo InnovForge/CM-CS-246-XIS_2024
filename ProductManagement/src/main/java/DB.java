@@ -41,6 +41,7 @@ public class DB {
     public final void createSQL() {
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate("create table if not exists products (id integer primary key autoincrement, name text, price real, create_at datetime)");
+            statement.executeUpdate("create table if not exists users(name text not null,password not null)");
         } catch (SQLException e) {
             e.printStackTrace(System.err);
         }
