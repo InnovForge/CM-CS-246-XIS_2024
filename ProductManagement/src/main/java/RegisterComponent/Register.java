@@ -348,7 +348,7 @@ public class Register extends javax.swing.JFrame {
         } else {
             HelperArgon2 argon2 = new HelperArgon2();
             if (Arrays.equals(password.getPassword(), confirmPassword.getPassword())) {
-                db.createUser(username.getText(), argon2.hash(password.getText().toCharArray()));
+                db.createAccount(username.getText(), argon2.hash(password.getText().toCharArray()));
                 notify.setText("Suscess");
                 notify.setForeground(Color.GREEN);
             } else {

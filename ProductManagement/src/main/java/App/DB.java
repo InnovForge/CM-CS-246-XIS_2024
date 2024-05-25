@@ -38,7 +38,7 @@ public class DB {
     public final void createSQL() {
         try (Statement statement = connection.createStatement()) {
 
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS users ("
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS accounts ("
                     + "user_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "username TEXT NOT NULL UNIQUE, "
                     + "password TEXT NOT NULL, "
@@ -64,8 +64,8 @@ public class DB {
         }
     }
 
-    public void createUser(String username, String password) {
-        String sql = "INSERT INTO users (username, password) VALUES (?,?)";
+    public void createAccount(String username, String password) {
+        String sql = "INSERT INTO accounts (username, password) VALUES (?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
@@ -110,7 +110,7 @@ public class DB {
 
     }
     public String getPasswordByUserName(String username) {
-        String sql = "SELECT password FROM users WHERE username = ?";
+        String sql = "SELECT password FROM accounts WHERE username = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, username);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
