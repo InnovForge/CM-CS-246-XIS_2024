@@ -29,7 +29,7 @@ public class DB {
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:sqlite.db");
-            createSQL(); // Gọi phương thức để tạo bảng và thêm dữ liệu mẫu
+
         } catch (Exception e) {
             e.printStackTrace(System.err);
         }
@@ -39,14 +39,14 @@ public class DB {
         try (Statement statement = connection.createStatement()) {
 
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS users ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + "user_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "username TEXT NOT NULL UNIQUE, "
                     + "password TEXT NOT NULL, "
                     + "role TEXT"
                     + ");");
 
             statement.execute("CREATE TABLE IF NOT EXISTS products ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + "product_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "name TEXT NOT NULL, "
                     + "price REAL, "
                     + "create_at DATETIME DEFAULT CURRENT_TIMESTAMP, "
@@ -54,10 +54,76 @@ public class DB {
                     + "FOREIGN KEY (user_id) REFERENCES users(id)"
                     + ");");
 
+            statement.execute("CREATE TABLE IF NOT EXISTS sessions ("
+                    + "session_id TEXT PRIMARY KEY, "
+                    + "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP "
+                    + ");");
+
         } catch (SQLException e) {
             e.printStackTrace(System.err);
         }
     }
+
+    public void createUser(String username, String password) {
+        String sql = "INSERT INTO users (username, password) VALUES (?,?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }
+    }
+
+    public void createSession(String session_id) {
+        String sql = "INSERT INTO sessions (session_id, created_at) VALUES (?,?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, session_id);
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDateTime = now.format(formatter);
+            preparedStatement.setString(2, formattedDateTime);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }
+    }
+    public String getSession() {
+        String sql = "SELECT * FROM sessions";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getString("session_id");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public void deleteSession() {
+        try (Statement statement = connection.createStatement()) {
+            statement.executeUpdate("DELETE FROM sessions");
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }
+
+    }
+    public String getPasswordByUserName(String username) {
+        String sql = "SELECT password FROM users WHERE username = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, username);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getString("password");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void createProduct(String name, BigDecimal price) {
         String sql = "INSERT INTO products (name, price, create_at) VALUES (?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -69,7 +135,6 @@ public class DB {
             String formattedDateTime = now.format(formatter);
 
             preparedStatement.setString(3, formattedDateTime);
-
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

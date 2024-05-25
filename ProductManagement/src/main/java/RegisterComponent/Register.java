@@ -4,6 +4,8 @@
  */
 package RegisterComponent;
 
+import App.DB;
+import LoginComponent.Login;
 import UI.FlatLafTheme;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatIntelliJLaf;
@@ -12,11 +14,14 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Insets;
 import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.Map;
 import javax.swing.Icon;
 import javax.swing.JTextField;
+import Helper.HelperArgon2;
+import java.util.Arrays;
 
 /**
  *
@@ -27,36 +32,86 @@ public class Register extends javax.swing.JFrame {
     FlatLafTheme flatLafTheme;
     String[] themeNames;
     Map<String, javax.swing.LookAndFeel> themeMap;
+    boolean isPasswordShow = true;
+    boolean isConfirmPasswordShow = true;
+    FlatSVGIcon eyeIcon = new FlatSVGIcon("svg/eye.svg", 16, 16);
+    FlatSVGIcon eyeIconHide = new FlatSVGIcon("svg/eye off.svg", 16, 16);
+    DB db;
 
     /**
      * Creates new form Register
      */
     public Register() {
+        db = new DB();
         flatLafTheme = new UI.FlatLafTheme();
         flatLafTheme.setCurrentLookAndFeel(new FlatIntelliJLaf());
         initComponents();
         notify.setText("");
         this.setLocationRelativeTo(null);
-
-        FlatSVGIcon eyeIcon = new FlatSVGIcon("svg/eye.svg", 16, 16);
-        FlatSVGIcon eyeIconHide = new FlatSVGIcon("svg/eye off.svg", 16, 16);
-        password.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, eyeIcon);
+        password.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, eyeIconHide);
         confirmPassword.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, eyeIconHide);
         //  password.putClientProperty(p, this);
         this.initEvent();
     }
     final void initEvent() {
+
+        password.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (trailingIconSearch(e, password)) {
+                    if (isPasswordShow) {
+                        password.setEchoChar((char) 0);
+                        password.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, eyeIcon);
+                        isPasswordShow = false;
+                    } else {
+                        password.setEchoChar('\u25cf');
+                        isPasswordShow = true;
+                        password.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, eyeIconHide);
+                    }
+                }
+            }
+        });
         password.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
                 if (trailingIconSearch(e, password)) {
+
                     password.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 } else {
                     password.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
                 }
             }
         });
+
+        confirmPassword.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (trailingIconSearch(e, confirmPassword)) {
+                    if (isConfirmPasswordShow) {
+                        confirmPassword.setEchoChar((char) 0);
+                        confirmPassword.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, eyeIcon);
+                        isConfirmPasswordShow = false;
+                    } else {
+                        confirmPassword.setEchoChar('\u25cf');
+                        isConfirmPasswordShow = true;
+                        confirmPassword.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, eyeIconHide);
+                    }
+                }
+            }
+        });
+        confirmPassword.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                if (trailingIconSearch(e, confirmPassword)) {
+
+                    confirmPassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                } else {
+                    confirmPassword.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+                }
+            }
+        });
     }
+
     private static boolean trailingIconSearch(MouseEvent e, JTextField textField) {
         Object value = textField.getClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON);
         if (value instanceof Icon) {
@@ -101,7 +156,7 @@ public class Register extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(255, 158, 158));
+        jPanel2.setBackground(new java.awt.Color(239, 166, 112));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -175,6 +230,11 @@ public class Register extends javax.swing.JFrame {
         jLabel8.setText("Already have account? ");
 
         jButton2.setText("Login");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         notify.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         notify.setForeground(new java.awt.Color(255, 0, 0));
@@ -194,12 +254,13 @@ public class Register extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
+                        .addContainerGap(40, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(confirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -210,7 +271,7 @@ public class Register extends javax.swing.JFrame {
                                 .addComponent(register, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
                                 .addComponent(notify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(password)))))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -250,7 +311,7 @@ public class Register extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -285,8 +346,9 @@ public class Register extends javax.swing.JFrame {
         if (username.getText().isEmpty() || password.getText().isEmpty() || confirmPassword.getText().isEmpty()) {
             notify.setText("Fields cannot be left blank.");
         } else {
-
-            if (password.getText().equals(confirmPassword.getText())) {
+            HelperArgon2 argon2 = new HelperArgon2();
+            if (Arrays.equals(password.getPassword(), confirmPassword.getPassword())) {
+                db.createUser(username.getText(), argon2.hash(password.getText().toCharArray()));
                 notify.setText("Suscess");
                 notify.setForeground(Color.GREEN);
             } else {
@@ -299,6 +361,13 @@ public class Register extends javax.swing.JFrame {
     private void confirmPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmPasswordActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        LoginComponent.Login  login = new Login();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
