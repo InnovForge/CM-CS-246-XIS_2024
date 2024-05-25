@@ -1,4 +1,5 @@
 
+import App.MainForm;
 import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
 import org.junit.Before;
 import org.assertj.swing.edt.GuiActionRunner;

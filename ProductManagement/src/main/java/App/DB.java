@@ -1,3 +1,5 @@
+package App;
+
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -35,7 +37,23 @@ public class DB {
 
     public final void createSQL() {
         try (Statement statement = connection.createStatement()) {
-            statement.executeUpdate("create table if not exists products (id integer primary key autoincrement, name text, price real, create_at datetime)");
+
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS users ("
+                    + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + "username TEXT NOT NULL UNIQUE, "
+                    + "password TEXT NOT NULL, "
+                    + "role TEXT"
+                    + ");");
+
+            statement.execute("CREATE TABLE IF NOT EXISTS products ("
+                    + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + "name TEXT NOT NULL, "
+                    + "price REAL, "
+                    + "create_at DATETIME DEFAULT CURRENT_TIMESTAMP, "
+                    + "user_id INTEGER, "
+                    + "FOREIGN KEY (user_id) REFERENCES users(id)"
+                    + ");");
+
         } catch (SQLException e) {
             e.printStackTrace(System.err);
         }

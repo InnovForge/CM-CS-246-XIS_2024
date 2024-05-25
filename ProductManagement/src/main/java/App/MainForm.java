@@ -1,3 +1,5 @@
+package App;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -185,6 +187,7 @@ public class MainForm extends javax.swing.JFrame {
                 }
             }
         });
+
         jTextField1.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
@@ -214,9 +217,8 @@ public class MainForm extends javax.swing.JFrame {
         String text = jTextField1.getText();
         final TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
         jTable1.setRowSorter(sorter);
-
+        jTextField1.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, new FlatSVGIcon("svg/cross.svg"));
         if (text.trim().length() == 0) {
-
             jTextField1.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, new FlatSVGIcon("svg/cross.svg").isDisabled());
             sorter.setRowFilter(null);
         } else {
@@ -754,7 +756,7 @@ public class MainForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 769, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
         );
 
         pack();
