@@ -1,3 +1,5 @@
+package App;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -43,7 +45,6 @@ public class MainForm extends javax.swing.JFrame {
     public MainForm() {
         db = new DB();
         BasicConfigurator.configure();
-
         flatLafTheme = new UI.FlatLafTheme();
         flatLafTheme.setCurrentLookAndFeel(new FlatIntelliJLaf());
         initComponents();
@@ -185,6 +186,7 @@ public class MainForm extends javax.swing.JFrame {
                 }
             }
         });
+
         jTextField1.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
@@ -214,9 +216,8 @@ public class MainForm extends javax.swing.JFrame {
         String text = jTextField1.getText();
         final TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
         jTable1.setRowSorter(sorter);
-
+        jTextField1.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, new FlatSVGIcon("svg/cross.svg"));
         if (text.trim().length() == 0) {
-
             jTextField1.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, new FlatSVGIcon("svg/cross.svg").isDisabled());
             sorter.setRowFilter(null);
         } else {
@@ -246,6 +247,7 @@ public class MainForm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -253,7 +255,6 @@ public class MainForm extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jButtonSearch = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
@@ -308,6 +309,13 @@ public class MainForm extends javax.swing.JFrame {
 
         jLabel8.setIcon( new FlatSVGIcon("svg/menu.svg"));
 
+        jButton8.setText("Logout");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -320,6 +328,8 @@ public class MainForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -334,7 +344,8 @@ public class MainForm extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton8))
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
@@ -392,30 +403,19 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        jButtonSearch.setText("Search");
-        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSearchActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSearch))
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -929,29 +929,6 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
     
-    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
-        // TODO add your handling code here:
-        String searchId = jTextField1.getText();
-        int c = 0;
-    for (int i = 1; i < arr.size(); i += 5) {
-        String id = arr.get(i).toString();
-        if (id.equals(searchId)) {
-            String tmp = "ID: " + arr.get(i).toString() + " " + "Name: " +
-                    arr.get(i+1).toString()+ " " + "Price: " + arr.get(i+2).toString();
-                    JOptionPane.showMessageDialog(panel, tmp);
-            break;
-             //model.addRow(new Object[]{arr.get(i), arr.get(i+1), arr.get(i+2)});
-        }
-        c+=1;
-    }
-      if(c== 14)
-      {
-           JOptionPane.showMessageDialog(panel, "Not found");
-
-      }
-
-    }//GEN-LAST:event_jButtonSearchActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         apachePoi.fileChooser(jTable1, this);
@@ -991,6 +968,7 @@ public class MainForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
+
     private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
         // TODO add your handling code here:
         int a = JOptionPane.showConfirmDialog(this, "Do yout want logout?");
@@ -1002,6 +980,14 @@ public class MainForm extends javax.swing.JFrame {
                     this.setVisible(false);
                 }
     }//GEN-LAST:event_LogoutButtonActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        db.deleteSession();
+        new LoginComponent.Login().setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -1050,7 +1036,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButtonSearch;
+    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButtonSua;
     private javax.swing.JButton jButtonXong;
     private javax.swing.JComboBox<String> jComboBox2;
