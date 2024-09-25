@@ -4,7 +4,7 @@
 
 
 #### Demo Product Management
-![Screenshot 2024-04-08 213816](https://github.com/ngtuonghy/TEAM3-CMU-CS-246-XIS_2024/assets/116539745/e3b8788e-7ec3-4840-b6f3-6cde452087e5)
+![Screenshot 2024-09-25 171758](https://github.com/user-attachments/assets/a6e95182-30ed-4c5e-adcb-2b93f891073b)
 ## List of group members 3: 
 - [NGUYỄN ĐÌNH MINH HẢI](https://github.com/minhhai04)
 - [NGUYỄN TƯỜNG HY (Leader)](https://github.com/ngtuonghy)
