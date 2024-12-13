@@ -41,24 +41,13 @@ public class Form extends javax.swing.JFrame {
         }
      */
     public void checkCalcu(String value) {
-        if (checkCalcu == true) {
-            if (value == ".") {
-                if (!jTextFieldSoThu1.getText().contains(".")) {
-                    jTextFieldSoThu1.setText(jTextFieldSoThu1.getText().concat("."));
-                }
+        if (checkCalcu == false) {
 
-            } else {
-                jTextFieldSoThu1.setText(jTextFieldSoThu1.getText().concat(String.valueOf(value)));
-            }
+            jTextFieldSoThu1.setText(jTextFieldSoThu1.getText().concat(value));
 
         } else {
-            if (value == ".") {
-                if (!jTextFieldSoThu2.getText().contains(".")) {
-                    jTextFieldSoThu2.setText(jTextFieldSoThu2.getText().concat("."));
-                }
-            } else {
-                jTextFieldSoThu2.setText(jTextFieldSoThu2.getText().concat(String.valueOf(value)));
-            }
+
+            jTextFieldSoThu2.setText(jTextFieldSoThu2.getText().concat(value));
 
         }
     }
@@ -83,27 +72,25 @@ public class Form extends javax.swing.JFrame {
         jTextFieldSoThu1.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                checkCalcu = false;
+                checkCalcu = true;
             }
 
             @Override
             public void focusLost(FocusEvent e) {
                 // Do nothing when focus is lost
-                checkCalcu = true;
+                checkCalcu = false;
             }
         });
         jTextFieldSoThu2.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                System.out.println("FocusGaned11");
-                checkCalcu = true;
+                checkCalcu = false;
             }
 
             @Override
             public void focusLost(FocusEvent e) {
                 // Do nothing when focus is lost
-                System.out.println("Lost focus22");
-                checkCalcu = false;
+                checkCalcu = true;
             }
         });
         SwingUtilities.invokeLater(() -> jTextFieldSoThu1.requestFocusInWindow());
@@ -452,7 +439,7 @@ public class Form extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldSoThu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSoThu1ActionPerformed
-       
+
 
     }//GEN-LAST:event_jTextFieldSoThu1ActionPerformed
 
@@ -461,12 +448,12 @@ public class Form extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
         checkCalcu("4");
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+
         checkCalcu("9");
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -476,7 +463,6 @@ public class Form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int dem = 0;
         checkCalcu("1");
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -498,6 +484,7 @@ public class Form extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         checkCalcu("7");
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -509,7 +496,15 @@ public class Form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton0ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        checkCalcu(".");
+        if (checkCalcu == false && !jTextFieldSoThu1.getText().isEmpty()) {
+            if (!jTextFieldSoThu1.getText().contains(".")) {
+                jTextFieldSoThu1.setText(jTextFieldSoThu1.getText().concat("."));
+            }
+        } else if (checkCalcu == true && !jTextFieldSoThu2.getText().isEmpty()) {
+            if (!jTextFieldSoThu2.getText().contains(".")) {
+                jTextFieldSoThu2.setText(jTextFieldSoThu2.getText().concat("."));
+            }
+        }
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jTextFieldSoThu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSoThu2ActionPerformed
@@ -534,11 +529,11 @@ public class Form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonXongj1ActionPerformed
 
     private void jButtonAmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAmActionPerformed
-        if (checkCalcu == false) {
+        if (checkCalcu == false && !jTextFieldSoThu1.getText().isEmpty()) {
             double temp = Double.parseDouble(jTextFieldSoThu1.getText());
             temp *= -1;
             jTextFieldSoThu1.setText(String.valueOf(temp));
-        } else {
+        } else if(checkCalcu == true && !jTextFieldSoThu2.getText().isEmpty()) {
             double temp = Double.parseDouble(jTextFieldSoThu2.getText());
             temp *= -1;
             jTextFieldSoThu2.setText(String.valueOf(temp));
