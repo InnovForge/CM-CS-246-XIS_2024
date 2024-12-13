@@ -604,6 +604,8 @@ public class Form extends javax.swing.JFrame {
             java.awt.event.ActionEvent evt) {
 
         try {
+
+           
             double b = Double.parseDouble(this.jTextFieldSoThu2.getText().trim());
             if (b == 0.0) {
                 this.jLabelKQMAIN.setText("Không thể chia cho 0");
@@ -618,6 +620,7 @@ public class Form extends javax.swing.JFrame {
             this.jLabelKQMAIN.setText("Nhập dữ liệu sai");
         }
         // GEN-FIRST:event_jButtonChiaActionPerformed
+        // TODO add your handling code here:
     } // GEN-LAST:event_jButtonChiaActionPerformed
 
     /**

@@ -568,6 +568,7 @@ public class Form extends javax.swing.JFrame {
     } // GEN-LAST:event_jButtonCongActionPerformed
 
     private void jButtonNhapLaiActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButtonNhapLaiActionPerformed
+        // TODO add your handling code here:
         this.jTextFieldSoThu1.setText("");
         this.jTextFieldSoThu2.setText("");
         jLabelKQMAIN.setText("");
@@ -588,6 +589,7 @@ public class Form extends javax.swing.JFrame {
 
     private void jButtonNhanActionPerformed(
             java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButtonNhanActionPerformed
+        // TODO add your handling code here:
 
         try {
 
@@ -604,6 +606,8 @@ public class Form extends javax.swing.JFrame {
             java.awt.event.ActionEvent evt) {
 
         try {
+
+            double a = Double.parseDouble(this.jTextFieldSoThu1.getText().trim());
             double b = Double.parseDouble(this.jTextFieldSoThu2.getText().trim());
             if (b == 0.0) {
                 this.jLabelKQMAIN.setText("Không thể chia cho 0");
@@ -618,6 +622,7 @@ public class Form extends javax.swing.JFrame {
             this.jLabelKQMAIN.setText("Nhập dữ liệu sai");
         }
         // GEN-FIRST:event_jButtonChiaActionPerformed
+        // TODO add your handling code here:
     } // GEN-LAST:event_jButtonChiaActionPerformed
 
     /**

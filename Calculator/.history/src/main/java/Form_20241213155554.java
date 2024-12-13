@@ -618,6 +618,7 @@ public class Form extends javax.swing.JFrame {
             this.jLabelKQMAIN.setText("Nhập dữ liệu sai");
         }
         // GEN-FIRST:event_jButtonChiaActionPerformed
+        // TODO add your handling code here:
     } // GEN-LAST:event_jButtonChiaActionPerformed
 
     /**
