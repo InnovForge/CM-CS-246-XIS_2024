@@ -87,30 +87,30 @@ public class TestOperation {
     //     String resultMultiply = t.formatResult(t.multiply());
     //     assertEquals("2000000000000", resultMultiply);
     // }
-    }
+
     @Test
-    void chiaVoiSoCuaNho() {
+    void verySmallNumberDivision() {
         t = new Operation<>(0.0001, 0.0002);
         String result = t.formatResult(t.divide());
         assertEquals("0.5", result);
     }
 
     @Test
-    void chiaVoiChinhNo() {
+    void divideOneByItself() {
         t = new Operation<>(1, 1);
         String result = t.formatResult(t.divide());
         assertEquals("1", result);
     }
 
     @Test
-    void congVoiSo0() {
+    void addZeroToNumber() {
         t = new Operation<>(0, 10);
         String result = t.formatResult(t.add());
         assertEquals("10", result);
     }
 
     @Test
-    void chiaVoiSo1() {
+    void divideNumberByOne() {
         t = new Operation<>(10, 1);
         String result = t.formatResult(t.divide());
         assertEquals("10", result);

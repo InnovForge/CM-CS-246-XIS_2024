@@ -87,7 +87,7 @@ public class TestOperation {
     //     String resultMultiply = t.formatResult(t.multiply());
     //     assertEquals("2000000000000", resultMultiply);
     // }
-    }
+
     @Test
     void chiaVoiSoCuaNho() {
         t = new Operation<>(0.0001, 0.0002);
