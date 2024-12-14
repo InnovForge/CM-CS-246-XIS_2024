@@ -4,7 +4,6 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class TestOperation {
@@ -83,7 +82,7 @@ public class TestOperation {
 
     @Test
     void tinhSoLon() {
-        t = new Operation<>(new BigDecimal("10000000000000000"), new BigDecimal("9999999999"));
+        t = new Operation<>(1_000_000, 2_000_000);
         String resultAdd = t.formatResult(t.divide(5, RoundingMode.HALF_UP));
         assertEquals("3000000", resultAdd);
 

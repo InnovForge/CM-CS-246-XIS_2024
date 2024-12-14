@@ -63,6 +63,6 @@ public class Operation<T extends Number> {
         System.out.println("Add: " + Operation.formatResult(op.add()));
         System.out.println("Minus: " + Operation.formatResult(op.minus()));
         System.out.println("Multiply: " + Operation.formatResult(op.multiply()));
-        System.out.println("Divide: " + Operation.formatResult(op.divide(5, RoundingMode.HALF_UP))); // Precision up to 10 digits
+        System.out.println("Divide: " + Operation.formatResult(op.divide(10, RoundingMode.HALF_UP))); // Precision up to 10 digits
     }
 }
