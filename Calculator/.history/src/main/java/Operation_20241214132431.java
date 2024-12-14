@@ -46,7 +46,7 @@ public class Operation<T extends Number> {
             throw new ArithmeticException("Cannot divide by zero");
         }
     
-        int scale = Math.max(a.stripTrailingZeros().scale(), b.stripTrailingZeros().scale()) + 15; // Thêm 5 chữ số để tăng độ chính xác
+        int scale = Math.max(a.stripTrailingZeros().scale(), b.stripTrailingZeros().scale()) + 5; // Thêm 5 chữ số để tăng độ chính xác
     
         // Chia với scale tự động và roundingMode
         return a.divide(b, scale, roundingMode).stripTrailingZeros();

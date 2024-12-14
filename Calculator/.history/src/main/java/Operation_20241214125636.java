@@ -41,15 +41,11 @@ public class Operation<T extends Number> {
         return a.multiply(b);
     }
 
-    public BigDecimal divide(RoundingMode roundingMode) {
+    public BigDecimal divide( RoundingMode roundingMode) {
         if (b.compareTo(BigDecimal.ZERO) == 0) {
             throw new ArithmeticException("Cannot divide by zero");
         }
-    
-        int scale = Math.max(a.stripTrailingZeros().scale(), b.stripTrailingZeros().scale()) + 15; // Thêm 5 chữ số để tăng độ chính xác
-    
-        // Chia với scale tự động và roundingMode
-        return a.divide(b, scale, roundingMode).stripTrailingZeros();
+        return a.divide(b, 1, roundingMode);
     }
 
     // Check and format result as integer or decimal
