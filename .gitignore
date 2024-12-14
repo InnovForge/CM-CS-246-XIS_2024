@@ -30,3 +30,5 @@ ProductManagement/target
 /ProductManagement/nbproject/
 /Calculator/nbproject/
 ProductManagement/sqlite.db
+/Calculator/.history/
+.idea/
