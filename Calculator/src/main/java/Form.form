@@ -99,8 +99,8 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelKQMAIN" min="-2" pref="156" max="-2" attributes="0"/>
                                   <Component id="jTextFieldSoThu2" min="-2" pref="241" max="-2" attributes="0"/>
+                                  <Component id="jLabelKQMAIN" min="-2" pref="207" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
