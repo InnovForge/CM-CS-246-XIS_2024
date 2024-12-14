@@ -1,7 +1,8 @@
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 import java.math.BigDecimal;
 
 public class TestOperation {
@@ -11,8 +12,12 @@ public class TestOperation {
     @Test
     @DisplayName("Test add two positive numbers")
     void congSoAm() {
-        Operation<Number> t = new Operation<>(-5, -10);
+        // NOTE: Arrange
+        Operation<Number> t;
+        // NOTE: Act
+        t = new Operation<>(-5, -10);
         String result = Operation.formatResult(t.add());
+        // NOTE: Assert
         assertEquals("-15", result, "5 + 10 = 15");
     }
 
