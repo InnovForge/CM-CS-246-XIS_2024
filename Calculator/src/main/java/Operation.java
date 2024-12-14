@@ -11,6 +11,14 @@ public class Operation<T extends Number> {
     public Operation(T a, T b) {
         this.a = new BigDecimal(a.toString());
         this.b = new BigDecimal(b.toString());
+
+
+    }
+
+    void checkHighersixteen() {
+        if (this.a.toString().length() > 16 || this.b.toString().length() > 16) {
+            throw new ArithmeticException("Number is too large");
+        }
     }
 
     public BigDecimal getA() {
@@ -30,19 +38,23 @@ public class Operation<T extends Number> {
     }
 
     public BigDecimal add() {
+        checkHighersixteen();
         return a.add(b);
     }
 
     public BigDecimal minus() {
+        checkHighersixteen();
         return a.subtract(b);
     }
 
     public BigDecimal multiply() {
+        checkHighersixteen();
         return a.multiply(b);
     }
 
 
     public BigDecimal divide() {
+        checkHighersixteen();
         RoundingMode ROUNDING_MODE = RoundingMode.HALF_UP;
         if (b.compareTo(BigDecimal.ZERO) == 0) {
             throw new ArithmeticException("Cannot divide by zero");

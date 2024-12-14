@@ -86,9 +86,9 @@ public class TestOperation {
 
     @Test
     void tinhSoLon() {
-        Operation<Number> t = new Operation<>(new BigDecimal("10000000000000000"), new BigDecimal("1000000000000000"));
+        Operation<Number> t = new Operation<>(new BigDecimal("10000000000000"), new BigDecimal("100000000000000"));
         String resultAdd = Operation.formatResult(t.divide());
-        assertEquals("10", resultAdd);
+        assertEquals("0.1", resultAdd);
     }
 
     @Test
@@ -125,6 +125,13 @@ public class TestOperation {
         Exception exception = assertThrows(ArithmeticException.class,
                 () -> t.divide());
         assertEquals("Cannot divide by zero", exception.getMessage());
+    }
+    @Test
+    void checkHighersixteen() {
+        Operation<Number> t = new Operation<>(new BigDecimal("99999999999999999"), new BigDecimal("3"));
+        Exception exception = assertThrows(ArithmeticException.class,
+                () -> t.divide());
+        assertEquals("Number is too large", exception.getMessage());
     }
 
 }
