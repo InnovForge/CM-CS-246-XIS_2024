@@ -3,10 +3,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -610,7 +606,7 @@ public class Form extends javax.swing.JFrame {
                 this.jTextFieldSoThu2.setText("");
             } else {
                 operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText().trim()), Double.parseDouble(this.jTextFieldSoThu2.getText().trim()));
-                this.jLabelKQMAIN.setText(operation.formatResult(operation.divide(RoundingMode.HALF_UP)) + "");
+                this.jLabelKQMAIN.setText(operation.formatResult(operation.divide()) + "");
             }
 
         } catch (NumberFormatException e) {

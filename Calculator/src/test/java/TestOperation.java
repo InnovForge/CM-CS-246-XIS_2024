@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class TestOperation {
 
@@ -63,28 +62,28 @@ public class TestOperation {
     @Test
     void chiaSoAm() {
         t = new Operation<>(-10, -2);
-        String result = t.formatResult(t.divide( RoundingMode.HALF_UP));
+        String result = t.formatResult(t.divide());
         assertEquals("5", result);
     }
 
     @Test
     void chiaSoHonHop() {
         t = new Operation<>(10, -2);
-        String result = t.formatResult(t.divide(RoundingMode.HALF_UP));
+        String result = t.formatResult(t.divide());
         assertEquals("-5", result);
     }
 
     @Test
     void chiaKetQuaThapPhan() {
         t = new Operation<>(7, 2);
-        String result = t.formatResult(t.divide(RoundingMode.HALF_UP));
+        String result = t.formatResult(t.divide());
         assertEquals("3.5", result);
     }
 
     @Test
     void tinhSoLon() {
         t = new Operation<>(new BigDecimal("10000000000000000"), new BigDecimal("1000000000000000"));
-        String resultAdd = t.formatResult(t.divide(RoundingMode.HALF_UP));
+        String resultAdd = t.formatResult(t.divide());
         assertEquals("10", resultAdd);
 
         // String resultMultiply = t.formatResult(t.multiply());
@@ -93,14 +92,14 @@ public class TestOperation {
     @Test
     void chiaVoiSoCucNho() {
         t = new Operation<>(0.0001, 0.0002);
-        String result = t.formatResult(t.divide(RoundingMode.HALF_UP));
+        String result = t.formatResult(t.divide());
         assertEquals("0.5", result);
     }
 
     @Test
     void chiaVoiChinhNo() {
         t = new Operation<>(1, 1);
-        String result = t.formatResult(t.divide(RoundingMode.HALF_UP));
+        String result = t.formatResult(t.divide());
         assertEquals("1", result);
     }
 
@@ -114,7 +113,7 @@ public class TestOperation {
     @Test
     void chiaVoiSo1() {
         t = new Operation<>(10, 1);
-        String result = t.formatResult(t.divide(RoundingMode.HALF_UP));
+        String result = t.formatResult(t.divide());
         assertEquals("10", result);
     }
 }
