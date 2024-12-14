@@ -397,20 +397,22 @@ public class Form extends javax.swing.JFrame {
                     .addComponent(jTextFieldSoThu1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonXongj1))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldSoThu2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonXongj2)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldSoThu2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelKQMAIN, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCong, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCong, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -533,7 +535,7 @@ public class Form extends javax.swing.JFrame {
             double temp = Double.parseDouble(jTextFieldSoThu1.getText());
             temp *= -1;
             jTextFieldSoThu1.setText(String.valueOf(temp));
-        } else if(checkCalcu == true && !jTextFieldSoThu2.getText().isEmpty()) {
+        } else if (checkCalcu == true && !jTextFieldSoThu2.getText().isEmpty()) {
             double temp = Double.parseDouble(jTextFieldSoThu2.getText());
             temp *= -1;
             jTextFieldSoThu2.setText(String.valueOf(temp));
@@ -553,9 +555,13 @@ public class Form extends javax.swing.JFrame {
 //            }
 //        });
         try {
+            if (jTextFieldSoThu1.getText().length() > 16 || jTextFieldSoThu2.getText().length() > 16) {
+                this.jLabelKQMAIN.setText("Số quá lớn! Vui lòng nhập <= 16 chữ số");
+            } else {
+                operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText().trim()), Double.parseDouble(this.jTextFieldSoThu2.getText().trim()));
+                this.jLabelKQMAIN.setText(operation.formatResult(operation.add()) + "");
+            }
 
-            operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText().trim()), Double.parseDouble(this.jTextFieldSoThu2.getText().trim()));
-            this.jLabelKQMAIN.setText(operation.formatResult(operation.add()) + "");
         } catch (NumberFormatException e) {
             this.jLabelKQMAIN.setText("Nhập dữ liệu sai");
         }
@@ -571,24 +577,29 @@ public class Form extends javax.swing.JFrame {
 
     private void jButtonTruActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButtonTruActionPerformed
         try {
-
-            operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText().trim()), Double.parseDouble(this.jTextFieldSoThu2.getText().trim()));
-            this.jLabelKQMAIN.setText(operation.formatResult(operation.minus()) + "");
+            if (jTextFieldSoThu1.getText().length() > 16 || jTextFieldSoThu2.getText().length() > 16) {
+                this.jLabelKQMAIN.setText("Số quá lớn! Vui lòng nhập <= 16 chữ số");
+            } else {
+                operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText().trim()), Double.parseDouble(this.jTextFieldSoThu2.getText().trim()));
+                this.jLabelKQMAIN.setText(operation.formatResult(operation.minus()) + "");
+            }
 
         } catch (NumberFormatException e) {
             this.jLabelKQMAIN.setText("Nhập dữ liệu sai");
         }
     } // GEN-LAST:event_jButtonTruActionPerformed
-    boolean checkN = false;
 
     private void jButtonNhanActionPerformed(
             java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButtonNhanActionPerformed
 
         try {
 
-            operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText().trim()), Double.parseDouble(this.jTextFieldSoThu2.getText().trim()));
-            this.jLabelKQMAIN.setText(operation.formatResult(operation.multiply()) + "");
-            checkN = false;
+            if (jTextFieldSoThu1.getText().length() > 16 || jTextFieldSoThu2.getText().length() > 16) {
+                this.jLabelKQMAIN.setText("Số quá lớn! Vui lòng nhập <= 16 chữ số");
+            } else {
+                operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText().trim()), Double.parseDouble(this.jTextFieldSoThu2.getText().trim()));
+                this.jLabelKQMAIN.setText(operation.formatResult(operation.multiply()) + "");
+            }
 
         } catch (NumberFormatException e) {
             this.jLabelKQMAIN.setText("Nhập dữ liệu sai");
@@ -599,14 +610,18 @@ public class Form extends javax.swing.JFrame {
             java.awt.event.ActionEvent evt) {
 
         try {
-            double b = Double.parseDouble(this.jTextFieldSoThu2.getText().trim());
-            if (b == 0.0) {
-                this.jLabelKQMAIN.setText("Không thể chia cho 0");
-                // this.jTextFieldSoThu1.setText("");
-                this.jTextFieldSoThu2.setText("");
+            if (jTextFieldSoThu1.getText().length() > 16 || jTextFieldSoThu2.getText().length() > 16) {
+                this.jLabelKQMAIN.setText("Số quá lớn! Vui lòng nhập <= 16 chữ số");
             } else {
-                operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText().trim()), Double.parseDouble(this.jTextFieldSoThu2.getText().trim()));
-                this.jLabelKQMAIN.setText(operation.formatResult(operation.divide()) + "");
+                double b = Double.parseDouble(this.jTextFieldSoThu2.getText().trim());
+                if (b == 0.0) {
+                    this.jLabelKQMAIN.setText("Không thể chia cho 0");
+                    // this.jTextFieldSoThu1.setText("");
+                    this.jTextFieldSoThu2.setText("");
+                } else {
+                    operation = new Operation(Double.parseDouble(this.jTextFieldSoThu1.getText().trim()), Double.parseDouble(this.jTextFieldSoThu2.getText().trim()));
+                    this.jLabelKQMAIN.setText(operation.formatResult(operation.divide()) + "");
+                }
             }
 
         } catch (NumberFormatException e) {
